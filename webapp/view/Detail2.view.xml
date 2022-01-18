@@ -1,0 +1,21 @@
+<mvc:View 
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="qstMyEinkauf.controller.Detail2"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page
+		title="{orderName}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<content>
+			<f:SimpleForm title="Product Details">
+				<f:content>
+					<Label text="Product ID"/>
+					<Label text="Product Name"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+	</Page>
+</mvc:View>

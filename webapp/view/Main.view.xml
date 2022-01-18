@@ -1,10 +1,23 @@
-<mvc:View controllerName="qstMyEinkauf.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true" xmlns="sap.m">
-	<App>
-		<pages>
-			<Page title="{i18n>title}">
-				<content></content>
-			</Page>
-		</pages>
-	</App>
+	<IconTabBar
+		id="IconTabBar01"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding"
+		tabDensityMode="Compact">
+		<items>
+			<IconTabFilter icon="sap-icon://activity-items" text="Einkaufslisten" key="lists"> 
+				<SplitApp id="rootControl">
+				</SplitApp>
+			</IconTabFilter>
+			
+			<IconTabFilter text="Waren" key="wares">
+				<Text text="Hier könnte sich später eine Übersicht zu den möglichen Waren befinden sowie die Möglichkeit, diese anzulegen." />
+			</IconTabFilter>
+			
+			<IconTabFilter text="Statistik-Center" key="statistics">
+				<Text text="Hier könnte sich später das Statistik-Center befinden." />
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
 </mvc:View>
