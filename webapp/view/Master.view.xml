@@ -1,0 +1,16 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="qstMyEinkauf.controller.Master"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page
+		title="Orders List">
+		<List id="orders" 
+				items="{/orders}"
+				mode="SingleSelectMaster"
+				selectionChange="onSelectionChange">
+			<items>
+				<StandardListItem title="{orderName}" 
+					type="Active"
+					press="onSelectionChange"/>
+			</items>
+		</List>
+	</Page>
+</mvc:View>

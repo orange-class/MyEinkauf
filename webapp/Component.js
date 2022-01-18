@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
+	"sap/ui/model/json/JSONModel", 
 	"qstMyEinkauf/model/models"
-], function(UIComponent, Device, models) {
+], function(UIComponent, Device, JSONModel, models) {
 	"use strict";
 
 	return UIComponent.extend("qstMyEinkauf.Component", {
@@ -11,17 +12,29 @@ sap.ui.define([
 			manifest: "json"
 		},
 
-		/**
-		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-		 * @public
-		 * @override
-		 */
-		init: function() {
+		init : function () {
+
+			var oModel = new JSONModel("controller/data.json");
+			this.setModel(oModel);
+			// set the device model
+			this.setModel(this.createDeviceModel(), "device");
+
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
-			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
+			// Parse the current url and display the targets of the route that matches the hash
+			this.getRouter().initialize();
+
+			this.getRouter().attachTitleChanged(function(oEvent){
+				// set the browser page title based on selected order/product
+				document.title = oEvent.getParameter("title");
+			});
+		},
+		
+		createDeviceModel : function () {
+			var oModel = new JSONModel(Device);
+			oModel.setDefaultBindingMode("OneWay");
+			return oModel;
 		}
 	});
 });

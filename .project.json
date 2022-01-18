@@ -13,6 +13,11 @@
       "templateId": "ui5template.basicSAPUI5ApplicationProject",
       "templateVersion": "1.40.12",
       "dateTimeStamp": "Mon, 17 Jan 2022 09:57:12 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Tue, 18 Jan 2022 15:24:58 GMT"
     }
   ],
   "codeCheckingTriggers": {
