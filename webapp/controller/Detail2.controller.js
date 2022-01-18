@@ -8,23 +8,14 @@ sap.ui.define([
 	return Controller.extend("qstMyEinkauf.controller.Detail2", {
 
 		onInit : function () {
-			this.getOwnerComponent().getRouter().getRoute("productDetails").attachPatternMatched(this._onRouteMatched, this);
+			this.getOwnerComponent().getRouter().getRoute("listSettings").attachPatternMatched(this._onRouteMatched, this);
 		},
 		_onRouteMatched: function(oEvent) {
-			var orderId = oEvent.getParameter("arguments").orderId;
-			var productId = oEvent.getParameter("arguments").productId;
-			this.getView().bindElement("/orders/" + orderId + "/products/" + productId);
+			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus Modell und muss angepasst werden!
+			this.getView().bindElement("/orders/" + this._orderId); //orderID anpassen + "/orders/" muss zu Modell passen!
 		},
-		onToProduct1C: function() {
-			this.getOwnerComponent().getRouter()
-				.navTo("productDetails",
-					{orderId:0, productId: 2});
-		},
-		onToProduct2D: function() {
-			this.getOwnerComponent().getRouter()
-				.navTo("productDetails",
-					{orderId:1, productId: 3});
-		},
+		
+		
 		onNavBack : function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 
@@ -35,7 +26,7 @@ sap.ui.define([
 				// There is no history!
 				// replace the current hash with order id 0 (will not add an history entry)
 				this.getOwnerComponent().getRouter()
-					.navTo("orderDetails",
+					.navTo("listDetails",
 						{orderId:0}, !Device.system.phone);
 			}
 		}

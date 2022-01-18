@@ -86,16 +86,16 @@
 					"target": [ "master" ]
 				},
 				{
-					"name": "orderDetails",
+					"name": "listDetails",
 					"pattern": "orders/:orderId:",
 					"target": [ "master",
-								"orderDetails" ]
+								"listDetails" ]
 				},
 				{
-					"name": "productDetails",
-					"pattern": "orders/:orderId:/products/:productId:",
+					"name": "listSettings",
+					"pattern": "orders/:orderId:",
 					"target": [ "master",
-								"productDetails" ]
+								"listSettings" ]
 				}
 			],
 			"targets": {
@@ -104,12 +104,12 @@
 					"controlAggregation": "masterPages",
 					"viewLevel": 0
 				},
-				"orderDetails": {
+				"listDetails": {
 					"viewName": "Detail1",
 					"controlAggregation": "detailPages",
 					"viewLevel": 1
 				},
-				"productDetails": {
+				"listSettings": {
 					"viewName": "Detail2",
 					"controlAggregation": "detailPages",
 					"viewLevel": 2

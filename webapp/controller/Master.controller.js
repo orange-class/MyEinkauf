@@ -16,14 +16,14 @@ sap.ui.define([
 			*/
 			if (!Device.system.phone) {
 				this.getOwnerComponent().getRouter()
-					.navTo("orderDetails", {orderId: 0}, true);
+					.navTo("listDetails", {orderId: 0}, true); // "orderId" aus dem Modell! Auch in der manifest anpassen!
 			}
 		},
 		onSelectionChange: function(oEvent) {
-			var sOrderId = oEvent.getSource().getSelectedItem().getBindingContext().getProperty("orderId");
+			var sListId = oEvent.getSource().getSelectedItem().getBindingContext().getProperty("orderId"); // "orderId" aus dem Modell!!
 			this.getOwnerComponent().getRouter()
-				.navTo("orderDetails",
-					{orderId:sOrderId},
+				.navTo("listDetails",
+					{orderId:sListId}, // an Modell anpassen!
 					!Device.system.phone);
 		}
 	});

@@ -6,14 +6,17 @@
 	xmlns="sap.m" >
 	<Page
 		title="Meine Einkaufslisten"> <!-- Später ggf. an Namen des eingeloggten Nutzers anpassen -->
-		<List id="orders" 
-				items="{/orders}"
-				mode="SingleSelectMaster"
-				selectionChange="onSelectionChange">
+		<List id="el" 
+			items="{/orders}"
+			mode="SingleSelectMaster"
+			selectionChange="onSelectionChange"> 
+			<!-- id wird nirgends verwendet bisher 
+			items muss an unser Modell angepasst werden-->
 			<items>
 				<StandardListItem title="{orderName}" 
 					type="Active"
 					press="onSelectionChange"/>
+				<!-- title muss an unser Modell angepasst werden! -->
 			</items>
 		</List>
 	</Page>

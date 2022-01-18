@@ -2,6 +2,30 @@
   "run": [
     {
       "filePath": "/webapp/index.html",
+      "previewMode": 0,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [
+        {
+          "paramName": "",
+          "paramValue": ""
+        }
+      ],
+      "hashParameter": "",
+      "backendSystem": [],
+      "urlParametersNotNeeded": false,
+      "_metadata": {
+        "id": 5305332,
+        "runnerId": "webapprunner",
+        "displayName": "Run index.html phone",
+        "lastRunTimeStamp": 1642524485216
+      }
+    },
+    {
+      "filePath": "/webapp/index.html",
       "previewMode": 1,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -13,10 +37,10 @@
       "backendSystem": [],
       "urlParametersNotNeeded": false,
       "_metadata": {
-        "runnerId": "webapprunner",
         "id": 440117,
+        "runnerId": "webapprunner",
         "displayName": "Run index.html",
-        "lastRunTimeStamp": 1642523244872
+        "lastRunTimeStamp": 1642524458781
       }
     }
   ]
