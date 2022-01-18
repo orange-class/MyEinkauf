@@ -93,7 +93,7 @@
 				},
 				{
 					"name": "listSettings",
-					"pattern": "orders/:orderId:",
+					"pattern": "orders/:orderId:/settings",
 					"target": [ "master",
 								"listSettings" ]
 				}

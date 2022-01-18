@@ -1,9 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"sap/ui/model/json/JSONModel", 
-	"qstMyEinkauf/model/models"
-], function(UIComponent, Device, JSONModel, models) {
+	"sap/ui/model/json/JSONModel"
+], function(UIComponent, Device, JSONModel) {
 	"use strict";
 
 	return UIComponent.extend("qstMyEinkauf.Component", {
