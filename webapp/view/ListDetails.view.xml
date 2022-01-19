@@ -6,7 +6,12 @@
 	xmlns:layout="sap.ui.layout" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
 	controllerName="qstMyEinkauf.controller.ListDetails">
-	<Page title="{orderName}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}"> <!-- titel an Modell anpassen -->
+	<Page 
+		title="{beispiel>orderName} von {beispiel>owner}" 
+		titleAlignment="Start"
+		navButtonPress="onNavBack" 
+		showNavButton="{device>/system/phone}"
+		contentOnlyBusy="true"> <!-- titel an Modell anpassen -->
 		<content>
 			<ComboBox  id="box_master">
 	
@@ -109,7 +114,15 @@
 					</t:Table>
 	
 			
+<<<<<<< HEAD
 			
+=======
+			<List id="products" items="{beispiel>products}"> <!-- items an Modell anpassen -->
+				<items>
+					<StandardListItem title="{beispiel>productName}" type="Active"/> <!-- press="onSelectionChange"-->
+				</items>
+			</List>
+>>>>>>> branch 'main' of https://github.com/orange-class/MyEinkauf.git
 			<!--<Table
 				id="table"
 				selectionMode="MultiToggle"
