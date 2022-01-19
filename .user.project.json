@@ -16,11 +16,7 @@
         "id": 440117,
         "runnerId": "webapprunner",
         "displayName": "Run index.html",
-<<<<<<< HEAD
         "lastRunTimeStamp": 1642613548497
-=======
-        "lastRunTimeStamp": 1642608959935
->>>>>>> branch 'main' of https://github.com/orange-class/MyEinkauf.git
       }
     },
     {
@@ -44,11 +40,7 @@
         "id": 5305332,
         "runnerId": "webapprunner",
         "displayName": "Run index.html phone",
-<<<<<<< HEAD
         "lastRunTimeStamp": 1642611663064
-=======
-        "lastRunTimeStamp": 1642589062818
->>>>>>> branch 'main' of https://github.com/orange-class/MyEinkauf.git
       }
     }
   ]
