@@ -47,25 +47,27 @@ sap.ui.define([
 			// create dialog lazily
 			if (!this.byId("openDialog")) {
 			// load asynchronous XML fragment
-			Fragment.load({
-				id: oView.getId(),
-				name: "qstMyEinkauf.view.Dialog",
-				controller: this
+				Fragment.load({
+					id: oView.getId(),
+					name: "qstMyEinkauf.view.Dialog",
+					controller: this
 				}).then(function (oDialog) {
-			// connect dialog to the root view 
-			//of this component (models, lifecycle)
-    		oView.addDependent(oDialog);
-    		oDialog.open();
+				// connect dialog to the root view 
+				//of this component (models, lifecycle)
+    			oView.addDependent(oDialog);
+    			oDialog.open();
 			});
 			} else {
     			this.byId("openDialog").open();
     		}
-    		},
+    		
+    		//oView.byId("").setText("");
+    	},
  
-    		closeDialog: function () {
-        			this.byId("openDialog").close();
-    			}
+    	closeDialog: function () {
+    			this.byId("openDialog").close();
+    	}
 		
 		
-			});
+		});
 });

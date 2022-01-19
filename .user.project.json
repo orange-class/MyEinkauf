@@ -2,6 +2,25 @@
   "run": [
     {
       "filePath": "/webapp/index.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": null,
+      "ui5VerSource": null,
+      "isDefaultVersion": 0,
+      "urlParameters": [],
+      "hashParameter": "",
+      "backendSystem": [],
+      "urlParametersNotNeeded": false,
+      "_metadata": {
+        "id": 440117,
+        "runnerId": "webapprunner",
+        "displayName": "Run index.html",
+        "lastRunTimeStamp": 1642613548497
+      }
+    },
+    {
+      "filePath": "/webapp/index.html",
       "previewMode": 0,
       "dataMode": 1,
       "workspace": "withoutWorkspace",
@@ -21,26 +40,7 @@
         "id": 5305332,
         "runnerId": "webapprunner",
         "displayName": "Run index.html phone",
-        "lastRunTimeStamp": 1642609716350
-      }
-    },
-    {
-      "filePath": "/webapp/index.html",
-      "previewMode": 1,
-      "dataMode": 1,
-      "workspace": "withoutWorkspace",
-      "ui5ActiveVersion": null,
-      "ui5VerSource": null,
-      "isDefaultVersion": 0,
-      "urlParameters": [],
-      "hashParameter": "",
-      "backendSystem": [],
-      "urlParametersNotNeeded": false,
-      "_metadata": {
-        "id": 440117,
-        "runnerId": "webapprunner",
-        "displayName": "Run index.html",
-        "lastRunTimeStamp": 1642609566886
+        "lastRunTimeStamp": 1642611663064
       }
     }
   ]

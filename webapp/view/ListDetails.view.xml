@@ -34,7 +34,7 @@
 			<!-- Abgeschlossenes Ausblenden - Button -->
 			<!-- Neuen Eintrag hinzufügen - Button -->
 			<!-- Markierte Einträge löschen - Button -->
-                <t:Table rows="{products}" id="table_details"> 
+                <t:Table rows="{beispiel>products}" id="table_details"> 
 	                   <t:columns>
 	                   	
 						<t:Column>
@@ -42,7 +42,7 @@
 								<Label text="Eintrag" id="label_eintrag"/>
 							</t:label>
 							<t:template>
-								<Text text="{productName}" id="text_eintrag"/>
+								<Text text="{beispiel>productName}" id="text_eintrag"/>
 							</t:template>
 						</t:Column> 
 						
@@ -113,16 +113,12 @@
 		
 					</t:Table>
 	
-			
-<<<<<<< HEAD
-			
-=======
 			<List id="products" items="{beispiel>products}"> <!-- items an Modell anpassen -->
 				<items>
 					<StandardListItem title="{beispiel>productName}" type="Active"/> <!-- press="onSelectionChange"-->
 				</items>
 			</List>
->>>>>>> branch 'main' of https://github.com/orange-class/MyEinkauf.git
+
 			<!--<Table
 				id="table"
 				selectionMode="MultiToggle"
