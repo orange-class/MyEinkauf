@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="qstMyEinkauf.controller.Master">
 	<Page title="Meine Einkaufslisten">
 	    <ComboBox  id="box_master">
@@ -51,5 +52,28 @@
 				            
 		
 	
+=======
+<mvc:View 
+	controllerName="qstMyEinkauf.controller.Master"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" >
+	<Page
+		title="Meine Einkaufslisten">
+		<List id="el" 
+			items="{beispiel>/orders}"
+			mode="SingleSelectMaster"
+			selectionChange="onSelectionChange"> 
+			<!-- id wird nirgends verwendet bisher 
+			items muss an unser Modell angepasst werden-->
+			<items>
+				<StandardListItem title="{beispiel>orderName}" 
+					type="Active"
+					press="onSelectionChange"/>
+				<!-- title muss an unser Modell angepasst werden! -->
+			</items>
+		</List>
+>>>>>>> branch 'main' of https://github.com/orange-class/MyEinkauf.git
 	</Page>
 </mvc:View>
