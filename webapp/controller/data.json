@@ -2,53 +2,119 @@
 	"orders": [
 		{
 			"orderId": 0,
-			"orderName": "Order 1",
+			"orderName": "Frühstück",
+			"owner": "Tom",
+			"changeDate": "01.01.2022",
+			"changedBy": "Tom",
 			"products": [
 				{
 					"productId": 0,
-					"productName": "Product 1-A"
+					"productName": "Äpfel",
+					"quantityProvided": 5,
+					"quantityRequested": 10,
+					"unit": "kg",
+					"owner": "Tom",
+					"creationDate": "01.01.2022",
+					"changeDate": "02.01.2022",
+					"changedBy": "Tom",
+					"finishedBy": ""
 				},
 				{
 					"productId": 1,
-					"productName": "Product 1-B"
+					"productName": "Gummibärchen",
+					"quantityProvided": 0,
+					"quantityRequested": 4,
+					"unit": "Päckchen",
+					"owner": "Tom",
+					"creationDate": "01.01.2022",
+					"changeDate": "01.01.2022",
+					"changedBy": "Tom",
+					"finishedBy": ""
 				},
 				{
 					"productId": 2,
-					"productName": "Product 1-C"
+					"productName": "Milch",
+					"quantityProvided": 3,
+					"quantityRequested": 3,
+					"unit": "Liter",
+					"owner": "Tom",
+					"creationDate": "01.01.2022",
+					"changeDate": "08.01.2022",
+					"changedBy": "Tom",
+					"finishedBy": "Bert"
+				}
+			],
+			"sharedWith": [
+				{
+					"userName": "Bert",
+					"role": "T"
 				},
 				{
-					"productId": 3,
-					"productName": "Product 1-D"
-				},
-				{
-					"productId": 4,
-					"productName": "Product 1-F"
+					"userName": "Gerlinde",
+					"role": "A"
 				}
 			]
 		},
 		{
 			"orderId": 1,
-			"orderName": "Order 2",
+			"orderName": "Vesper",
+			"owner": "Lisa",
+			"changeDate": "05.01.2022",
+			"changedBy": "Tom",
 			"products": [
 				{
 					"productId": 0,
-					"productName": "Product 2-A"
-				},
-				{
-					"productId": 1,
-					"productName": "Product 2-B"
+					"productName": "Äpfel",
+					"quantityProvided": 0,
+					"quantityRequested": 3,
+					"unit": "Kilo",
+					"owner": "Lisa",
+					"creationDate": "05.01.2022",
+					"changeDate": "10.01.2022",
+					"changedBy": "Gerlinde",
+					"finishedBy": ""
 				},
 				{
 					"productId": 2,
-					"productName": "Product 2-C"
+					"productName": "Milch",
+					"quantityProvided": 1,
+					"quantityRequested": 1,
+					"unit": "Liter",
+					"owner": "Lisa",
+					"creationDate": "05.01.2022",
+					"changeDate": "08.01.2022",
+					"changedBy": "Tom",
+					"finishedBy": "Bert"
 				},
 				{
 					"productId": 3,
-					"productName": "Product 2-D"
+					"productName": "Kekse",
+					"quantityProvided": 13,
+					"quantityRequested": 13,
+					"unit": "Packungen",
+					"owner": "Tom",
+					"creationDate": "01.01.2022",
+					"changeDate": "08.01.2022",
+					"changedBy": "Tom",
+					"finishedBy": "Tom"
+				}
+			],
+			"sharedWith": [
+				{
+					"userName": "Gerlinde",
+					"role": "B"
 				},
 				{
-					"productId": 4,
-					"productName": "Product 2-F"
+					"userName": "Tom",
+					"role": "B"
+				},
+				{
+					"userName": "Agada",
+					"role": "A"
+				},
+				{
+					"userName": "Bert",
+					"role": "A"
 				}
 			]
 		}
