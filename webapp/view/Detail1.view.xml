@@ -18,6 +18,7 @@
 			<!-- SORTIEREN: alphabetisch, Ersteller, Zeit via Dropdown (ComboBox) -->
 			<!-- Abgeschlossenes Ausblenden - Button -->
 			<!-- Neuen Eintrag hinzufügen - Button -->
+			<!-- Markierte Einträge löschen - Button -->
 			
 			<List id="products" items="{products}"> <!-- items an Modell anpassen -->
 				<items>
