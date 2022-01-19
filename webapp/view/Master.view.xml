@@ -5,15 +5,11 @@
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns="sap.m" >
 	<Page title="Meine Einkaufslisten">
-	    <ComboBox  id="box_master">
+		<ComboBox  id="box_master">
 			<items>
-	
 				<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
-	
 				<core:ListItem text="Zeit" key="item_zeit" id="combo_zeit"/>
-	
 			</items>
-	
 		</ComboBox>
 		
 		<!--<List id="el" items="{beispiel>/orders}"-->
