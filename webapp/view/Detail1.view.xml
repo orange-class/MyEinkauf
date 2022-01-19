@@ -13,7 +13,7 @@
 			<!-- rechts daneben: zuletzt bearbeitet von wem und wann? -->
 			
 			<!-- Settings-Button -->
-			<Button id="buttonToSettings" label="Einstellungen" icon="sap-icon://action-settings" press="onToSettings"/>
+			<Button id="buttonToSettings" text="Einstellungen" icon="sap-icon://action-settings" press="onToSettings"/>
 			
 			<!-- SORTIEREN: alphabetisch, Ersteller, Zeit via Dropdown (ComboBox) -->
 			<!-- Abgeschlossenes Ausblenden - Button -->

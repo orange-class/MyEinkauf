@@ -20,7 +20,7 @@ sap.ui.define([
 		
 		
 		onToSettings: function() {
-			this.getOwnerComponent().getRouter().navTo("listSettings", {orderId:0}); //orderID anpassen this._orderId
+			this.getOwnerComponent().getRouter().navTo("listSettings", {orderId:this._orderId}); //orderID anpassen this._orderId
 		},
 		
 		
