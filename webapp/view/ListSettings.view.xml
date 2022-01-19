@@ -8,9 +8,11 @@
 	controllerName="qstMyEinkauf.controller.ListSettings"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page
-		title="{orderName}"
+		title="{beispiel>orderName} von {beispiel>owner}"
 		showNavButton="true"
-		navButtonPress="onNavBack">
+		navButtonPress="onNavBack"
+		contentOnlyBusy="true"
+		titleAlignment="Start">
 		<content>
 			<t:Table rows="" id="table_settings" > 
 	                   <t:columns>
