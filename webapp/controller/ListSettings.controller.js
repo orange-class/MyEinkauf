@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, History, Device) {
 	"use strict";
 
-	return Controller.extend("qstMyEinkauf.controller.Detail2", {
+	return Controller.extend("qstMyEinkauf.controller.ListSettings", {
 
 		onInit : function () {
 			this.getOwnerComponent().getRouter().getRoute("listSettings").attachPatternMatched(this._onRouteMatched, this);

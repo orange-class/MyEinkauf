@@ -5,7 +5,7 @@
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns="sap.m" >
 	<Page
-		title="Meine Einkaufslisten"> <!-- Später ggf. an Namen des eingeloggten Nutzers anpassen -->
+		title="Meine Einkaufslisten">
 		<List id="el" 
 			items="{/orders}"
 			mode="SingleSelectMaster"
