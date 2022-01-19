@@ -86,6 +86,12 @@
 					"target": [ "master" ]
 				},
 				{
+					"name": "listStart",
+					"pattern": "start",
+					"target": [ "master",
+								"listStart" ]
+				},
+				{
 					"name": "listDetails",
 					"pattern": "orders/:orderId:",
 					"target": [ "master",
@@ -103,6 +109,11 @@
 					"viewName": "Master",
 					"controlAggregation": "masterPages",
 					"viewLevel": 0
+				},
+				"listStart": {
+					"viewName": "ListStart",
+					"controlAggregation": "detailPages",
+					"viewLevel": 1
 				},
 				"listDetails": {
 					"viewName": "ListDetails",

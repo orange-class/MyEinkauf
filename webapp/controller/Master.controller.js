@@ -8,7 +8,7 @@ sap.ui.define([
 		onInit : function () {
 			this.getOwnerComponent().getRouter().getRoute("master").attachPatternMatched(this._onRouteMatched, this);
 		},
-		_onRouteMatched: function(oEvent) {
+		_onRouteMatched: function() {
 			/*
 			* Navigate to the first item by default only on desktop and tablet (but not phone).
 			* Note that item selection is not handled as it is
@@ -16,7 +16,7 @@ sap.ui.define([
 			*/
 			if (!Device.system.phone) {
 				this.getOwnerComponent().getRouter()
-					.navTo("listDetails", {orderId: 0}, true); // "orderId" aus dem Modell! Auch in der manifest anpassen!
+					.navTo("listStart", true); //
 			}
 		},
 		onSelectionChange: function(oEvent) {
