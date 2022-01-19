@@ -9,9 +9,8 @@ sap.ui.define([
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("listStart").attachPatternMatched(this._onRouteMatched, this);
 		},
-		_onRouteMatched: function(oEvent) {
-			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus Modell und muss angepasst werden!
-			this.getView().bindElement("start"); //orderID anpassen + "/orders/" muss zu Modell passen!
+		_onRouteMatched: function() {
+			this.getView().bindElement("start");
 		},
 		
 		// Für Routing zurück im Browser
