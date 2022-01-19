@@ -14,7 +14,7 @@ sap.ui.define([
 		init : function () {
 
 			var oModel = new JSONModel("controller/data.json");
-			this.setModel(oModel);
+			this.setModel(oModel, "beispiel");
 			
 			// set the device model
 			this.setModel(this.createDeviceModel(), "device");

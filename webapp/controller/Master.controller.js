@@ -20,7 +20,7 @@ sap.ui.define([
 			}
 		},
 		onSelectionChange: function(oEvent) {
-			var sListId = oEvent.getSource().getSelectedItem().getBindingContext().getProperty("orderId"); // "orderId" aus dem Modell!!
+			var sListId = oEvent.getSource().getSelectedItem().getBindingContext("beispiel").getProperty("orderId"); // "orderId" aus dem Modell!! Property und nicht der Pfad! Zufällig das Gleiche
 			this.getOwnerComponent().getRouter()
 				.navTo("listDetails",
 					{orderId:sListId}, // an Modell anpassen!

@@ -7,13 +7,13 @@
 	<Page
 		title="Meine Einkaufslisten">
 		<List id="el" 
-			items="{/orders}"
+			items="{beispiel>/orders}"
 			mode="SingleSelectMaster"
 			selectionChange="onSelectionChange"> 
 			<!-- id wird nirgends verwendet bisher 
 			items muss an unser Modell angepasst werden-->
 			<items>
-				<StandardListItem title="{orderName}" 
+				<StandardListItem title="{beispiel>orderName}" 
 					type="Active"
 					press="onSelectionChange"/>
 				<!-- title muss an unser Modell angepasst werden! -->

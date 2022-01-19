@@ -8,9 +8,13 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().getRoute("listDetails").attachPatternMatched(this._onRouteMatched, this);
 		},
 		_onRouteMatched: function(oEvent) {
-			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus Modell und muss angepasst werden!
-			this.getView().bindElement("/orders/" + this._orderId); //orderID anpassen + "/orders/" muss zu Modell passen!
+			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus mnifest :orderID: und muss angepasst werden!
+			this.getView().bindElement({
+				path: "/orders/" + this._orderId,
+				model: "beispiel"
+			}); //orderID anpassen + "/orders/" muss zu Modell passen! + Modell anpassen + Seite 240 Extras einbauen
 		},
+		
 		/*onSelectionChange: function(oEvent) {
 			var sProductId = oEvent.getSource().getBindingContext().getProperty("productId");
 			this.getOwnerComponent().getRouter()
@@ -20,7 +24,7 @@ sap.ui.define([
 		
 		
 		onToSettings: function() {
-			this.getOwnerComponent().getRouter().navTo("listSettings", {orderId:this._orderId}); //orderID anpassen this._orderId
+			this.getOwnerComponent().getRouter().navTo("listSettings", {orderId:this._orderId}); //orderID anpassen
 		},
 		
 		

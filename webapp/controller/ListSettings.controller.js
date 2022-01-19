@@ -12,7 +12,10 @@ sap.ui.define([
 		},
 		_onRouteMatched: function(oEvent) {
 			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus Modell und muss angepasst werden!
-			this.getView().bindElement("/orders/" + this._orderId); //orderID anpassen + "/orders/" muss zu Modell passen!
+			this.getView().bindElement({
+				path: "/orders/" + this._orderId,
+				model: "beispiel"
+			}); //orderID anpassen + "/orders/" muss zu Modell passen!
 		},
 		
 		
@@ -27,7 +30,7 @@ sap.ui.define([
 				// replace the current hash with order id 0 (will not add an history entry)
 				this.getOwnerComponent().getRouter()
 					.navTo("listDetails",
-						{orderId:0}, !Device.system.phone);
+						{orderId:0}, !Device.system.phone); //absoluter Pfad!
 			}
 		}
 
