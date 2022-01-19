@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/core/routing/History"
 ], function(Controller, History) {
 	"use strict";
-	return Controller.extend("qstMyEinkauf.controller.Detail1", {
+	return Controller.extend("qstMyEinkauf.controller.ListDetails", {
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("listDetails").attachPatternMatched(this._onRouteMatched, this);
 		},

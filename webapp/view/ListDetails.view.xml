@@ -5,7 +5,7 @@
 	xmlns:t="sap.ui.table" 
 	xmlns:layout="sap.ui.layout" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
-	controllerName="qstMyEinkauf.controller.Detail1">
+	controllerName="qstMyEinkauf.controller.ListDetails">
 	<Page title="{orderName}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}"> <!-- titel an Modell anpassen -->
 		<content>
 			

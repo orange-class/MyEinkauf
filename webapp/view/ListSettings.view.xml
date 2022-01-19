@@ -3,7 +3,7 @@
 	xmlns:layout="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
-	controllerName="qstMyEinkauf.controller.Detail2"
+	controllerName="qstMyEinkauf.controller.ListSettings"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page
 		title="{orderName}"

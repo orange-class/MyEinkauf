@@ -105,12 +105,12 @@
 					"viewLevel": 0
 				},
 				"listDetails": {
-					"viewName": "Detail1",
+					"viewName": "ListDetails",
 					"controlAggregation": "detailPages",
 					"viewLevel": 1
 				},
 				"listSettings": {
-					"viewName": "Detail2",
+					"viewName": "ListSettings",
 					"controlAggregation": "detailPages",
 					"viewLevel": 2
 				}
