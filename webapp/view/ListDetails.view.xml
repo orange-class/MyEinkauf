@@ -8,7 +8,17 @@
 	controllerName="qstMyEinkauf.controller.ListDetails">
 	<Page title="{orderName}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}"> <!-- titel an Modell anpassen -->
 		<content>
-			
+			<ComboBox  id="box_master">
+	
+			    <items>
+	                <core:ListItem text="Alphabetisch" key="item_zeit" id="combo_alphabet"/>
+			        <core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
+	
+			        <core:ListItem text="Zeit" key="item_zeit" id="combo_zeit"/>
+	
+			        </items>
+	
+			</ComboBox>
 			<!-- UNTERTITEL: Eigentümer der Liste -->
 			<!-- rechts daneben: zuletzt bearbeitet von wem und wann? -->
 			
@@ -19,12 +29,87 @@
 			<!-- Abgeschlossenes Ausblenden - Button -->
 			<!-- Neuen Eintrag hinzufügen - Button -->
 			<!-- Markierte Einträge löschen - Button -->
+                <t:Table rows="{products}" id="table_details"> 
+	                   <t:columns>
+	                   	
+						<t:Column>
+							<t:label>
+								<Label text="Eintrag" id="label_eintrag"/>
+							</t:label>
+							<t:template>
+								<Text text="{productName}" id="text_eintrag"/>
+							</t:template>
+						</t:Column> 
+						
+						<t:Column>
+							<t:label>
+								<Label text="Menge" id="label_menge"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_menge"/>
+						<!--		<Button text="Menge auswählen" id="button_menge" /> -->
+							</t:template>
+						</t:Column> 
+						<t:Column>
+							<t:label>
+								<Label text="" id="label_menge_button"/>
+							</t:label>
+							<t:template>
+							
+							<Button text="Menge eingeben" press="onOpenDialog" id="button_menge" />
+							</t:template>
+						</t:Column> 
+						<t:Column>
+							<t:label>
+								<Label text="Einheit" id="label_einheit"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_einheit"/>
+							</t:template>
+						</t:Column> 
+						
+						<t:Column>
+							<t:label>
+								<Label text="Ersteller" id="label_ersteller"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_ersteller"/>
+							</t:template>
+						</t:Column> 
+					
+						
+						<t:Column>
+							<t:label>
+								<Label text="Datum" id="label_datum"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_datum"/>
+							</t:template>
+						</t:Column> 
+						
+						<t:Column>
+							<t:label>
+								<Label text="bearbeiter" id="label_bearbeiter"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_bearbeiter"/>
+							</t:template>
+						</t:Column>
+						<t:Column>
+							<t:label>
+								<Label text="Abschließer" id="label_abschliesser"/>
+							</t:label>
+							<t:template>
+								<Text text="" id="text_abschliesser"/>
+							</t:template>
+						</t:Column> 
+						
+						</t:columns>
+		
+					</t:Table>
+	
 			
-			<List id="products" items="{products}"> <!-- items an Modell anpassen -->
-				<items>
-					<StandardListItem title="{productName}" type="Active"/> <!-- press="onSelectionChange"-->
-				</items>
-			</List>
+			
 			<!--<Table
 				id="table"
 				selectionMode="MultiToggle"

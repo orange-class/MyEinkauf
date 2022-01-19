@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m"
+xmlns:core="sap.ui.core">
+<Dialog id="openDialog" title="Wünschmenge">
+	
+	<Input id="input_wuenschmenge"  />
+	
+    <beginButton>
+         <Button text="Ok" press=".closeDialog"/>
+    </beginButton>
+
+</Dialog>
+
+</core:FragmentDefinition>

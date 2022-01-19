@@ -11,11 +11,11 @@
 				</SplitApp>
 			</IconTabFilter>
 			
-			<IconTabFilter text="Waren" key="wares">
+			<IconTabFilter icon="sap-icon://product" text="Waren" key="wares">
 				<Text text="Hier könnte sich später eine Übersicht zu den möglichen Waren befinden sowie die Möglichkeit, diese anzulegen." />
 			</IconTabFilter>
 			
-			<IconTabFilter text="Statistik-Center" key="statistics">
+			<IconTabFilter icon="sap-icon://business-objects-experience" text="Statistik-Center" key="statistics">
 				<Text text="Hier könnte sich später das Statistik-Center befinden." />
 			</IconTabFilter>
 		</items>
