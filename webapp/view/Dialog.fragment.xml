@@ -2,7 +2,7 @@
 xmlns:core="sap.ui.core">
 <Dialog id="openDialog" title="Wünschmenge">
 	
-	<Input id="input_wuenschmenge"  />
+	<Input text="" id="input_wuenschmenge"  />
 	
     <beginButton>
          <Button text="Ok" press=".closeDialog"/>
