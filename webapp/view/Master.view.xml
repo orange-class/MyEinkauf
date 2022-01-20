@@ -11,49 +11,25 @@
 				<core:ListItem text="Zeit" key="item_zeit" id="combo_zeit"/>
 			</items>
 		</ComboBox>
-		
-		<!--<List id="el" items="{beispiel>/orders}"-->
-		<!--	mode="SingleSelectMaster"-->
-		<!--	selectionChange="onSelectionChange"> -->
-			<!-- id wird nirgends verwendet bisher 
-			items muss an unser Modell angepasst werden -->
-		<!--	<items>-->
-		<!--		<StandardListItem title="{beispiel>orderName}" -->
-		<!--			type="Active"-->
-		<!--			press="onSelectionChange"/>-->
-		<!--		 title muss an unser Modell angepasst werden!-->
-		<!--	</items>-->
-		<!--</List>-->
-		
-		<Table id="table_master" items="{beispiel>/orders}" selectionChange="onSelectionChange" mode="SingleSelectMaster">
+		<VBox>
+			<core:Icon src="sap-icon://add" color="#031E48"/>
+		</VBox>
+
+		<List id="el" items="{beispiel>/orders}"
+			
+		    mode="SingleSelectMaster"
+			selectionChange="onSelectionChange"
+			delete="handleDelete"> 
+			
 			<items>
-				<ColumnListItem id="_item0">
-					<cells>
-						<Text text="{beispiel>orderName}" id="text_title"/>
-						<Text text="" id="text_user_id"/>
-						<Text text="" id="text_last_change"/>
-					</cells>
-				</ColumnListItem>
+				<StandardListItem
+					title="{beispiel>orderName}" 
+					description="{beispiel>owner}"
+					info="{beispiel>changeDate}"
+					type="Active"
+					press="onSelectionChange"/>
+		
 			</items>
-				<columns>
-					<Column id="__column0">
-						<header>
-							<Label text="Titel" id="label_title"/>
-						</header>
-					</Column>
-					<Column id="__column1">
-						<header>
-							<Label text="Ersteller" id="label_user_id"/>
-						</header>
-					</Column>
-					<Column id="__column2">
-						<header>
-							<Label text="Zuletzt bearbeitet am" id="label_last_change"/>
-						</header>
-					</Column>
-					        
-					            
-				</columns>
-		</Table>
+		</List>
 	</Page>
 </mvc:View>

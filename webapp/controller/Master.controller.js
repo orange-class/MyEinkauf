@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller", 
-	"sap/ui/Device"
-	], function (Controller, Device) {
+	"sap/ui/Device",
+	"sap/m/MessageToast"
+	], function (Controller, Device, MessageToast) {
 	"use strict";
 
 	return Controller.extend("qstMyEinkauf.controller.Master", {
@@ -20,11 +21,13 @@ sap.ui.define([
 			}
 		},
 		onSelectionChange: function(oEvent) {
+			MessageToast.show("Enter SelectionChange");
 			var sListId = oEvent.getSource().getSelectedItem().getBindingContext("beispiel").getProperty("orderId"); // "orderId" aus dem Modell!! Property und nicht der Pfad! Zufällig das Gleiche
 			this.getOwnerComponent().getRouter()
 				.navTo("listDetails",
 					{orderId:sListId}, // an Modell anpassen!
 					!Device.system.phone);
 		}
+		
 	});
 });
