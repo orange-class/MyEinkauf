@@ -1,20 +1,20 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" controllerName="qstMyEinkauf.controller.Master">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" controllerName="qstMyEinkauf.controller.Master">
 	<Page title="Meine Einkaufslisten">
-
 		<l:VerticalLayout>
-		    <l:HorizontalLayout>
-		        <Label text="Sortieren auf"/>
-		        <Text text="    " width="100px"/>
+			<l:HorizontalLayout>
+				<Label text="Sortieren auf"/>
+				<Text text=" " width="100px"/>
 				<ComboBox id="box_master_sort" maxWidth="40%" selectionChange="onSelectSort">
 					<items>
 						<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
 						<core:ListItem text="Zeit" key="item_zeit" id="combo_zeit"/>
 					</items>
 				</ComboBox>
-		    </l:HorizontalLayout>
-		    <l:HorizontalLayout>
-		        <Label text="Ersteller"/>
-		        <Text text="    " width="120px"/>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout>
+				<Label text="Ersteller"/>
+				<Text text=" " width="120px"/>
 				<ComboBox id="box_master_owner" maxWidth="40%" items="{beispiel>/orders}" selectionChange="onSelectName">
 					<items>
 						<core:ListItem text="{beispiel>owner}" key="item_name" id="combo_name"/>
@@ -22,23 +22,15 @@
 				</ComboBox>
 			</l:HorizontalLayout>
 		</l:VerticalLayout>
-
-			<Button icon="sap-icon://add" width="20%"/>
-		    <Text text="    " width="70px"/>    
-			<Button icon="sap-icon://undo" press="onReset" width="40%"/>
-
-		
-		
-		<List id="el" items="{beispiel>/orders}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete"> 
-			
+		<Button icon="sap-icon://add" width="20%"/>
+		<Text text=" " width="70px"/>
+		<Button icon="sap-icon://undo" press="onReset" width="40%"/>
+		<List id="el" items="{beispiel>/orders}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete">
 			<items>
-				<StandardListItem title="{beispiel>orderName}" description="{beispiel>owner}" info="{beispiel>changeDate}" type="Active" press="onSelectionChange"/>
-		
+				<StandardListItem title="{beispiel>orderName}" description="{beispiel>owner}" info="{beispiel>changeDate}" type="Active"
+					press="onSelectionChange"/>
 			</items>
 		</List>
-		
-		
-		
-	<content/>
+		<content/>
 	</Page>
 </mvc:View>
