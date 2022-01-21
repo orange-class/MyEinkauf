@@ -3,6 +3,8 @@
 	xmlns:layout="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core"
 	controllerName="qstMyEinkauf.controller.ListSettings"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page
@@ -12,12 +14,38 @@
 		contentOnlyBusy="true"
 		titleAlignment="Start">
 		<content>
-			<f:SimpleForm title="Product Details">
-				<f:content>
-					<Label text="Product ID"/>
-					<Label text="Product Name"/>
-				</f:content>
-			</f:SimpleForm>
+			<t:Table rows="" id="table_settings" > 
+	                   <t:columns>
+	                   	<t:Column>
+							<t:label>
+								<Label text="Name" id="label_list_idr"/>
+							</t:label>
+							<t:template>
+								<Text text="Foo" id="text_list_idr"/>
+							</t:template>
+						</t:Column> 
+						
+						<t:Column>
+							<t:label>
+								<Label text="Rolle" id="label_item_id"/>
+							</t:label>
+							<t:template>
+								<ComboBox  id="box_master">
+	
+			                         <items>
+	                                       <core:ListItem text="Ansehen" key="item_zeit" id="combo_ansehen"/>
+			                               <core:ListItem text="Bearbeiten" key="item_ersteller" id="combo_bearbeiten"/>
+			                               <core:ListItem text="Teilen" key="item_zeit" id="combo_teilen"/>
+	
+			                          </items>
+	
+			                    </ComboBox>
+							</t:template>
+						</t:Column> 
+						
+						</t:columns>
+		
+					</t:Table>
 		</content>
 	</Page>
 </mvc:View>
