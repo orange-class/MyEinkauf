@@ -12,6 +12,7 @@ sap.ui.define([
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("master").attachPatternMatched(this._onRouteMatched, this);
 		},
+		
 		_onRouteMatched: function() {
 			/*
 			 * Navigate to the first item by default only on desktop and tablet (but not phone).
@@ -23,6 +24,7 @@ sap.ui.define([
 					.navTo("listStart", true); //
 			}
 		},
+		
 		onSelectionChange: function(oEvent) {
 			MessageToast.show("Enter SelectionChange");
 			var sListId = oEvent.getSource().getSelectedItem().getBindingContext("beispiel").getProperty("orderId"); // "orderId" aus dem Modell!! Property und nicht der Pfad! Zufällig das Gleiche
@@ -45,9 +47,9 @@ sap.ui.define([
 				operator: FilterOperator.EQ,
 				value1: sOwner
 			});
-
 			oList.getBinding("items").filter(oFilter);
 		},
+		
 		onSelectSort: function(oEvent) {
 			MessageToast.show("Sorted!");
 			var oItem = oEvent.getParameter("selectedItem");
@@ -62,16 +64,15 @@ sap.ui.define([
 				oSorter.fnComparator = this.comparator;
 				oList.getBinding("items").sort(oSorter);
 			}
-
 		},
 
-		onReset: function(oEvent) {
-			MessageToast.show("Reset!");
+		onReset: function() {
+			MessageToast.show("Sortierung und/oder Filterung aufgehoben");
 			var oList = this.getView().byId("el");
 			oList.getBinding("items").filter(null);
 			oList.getBinding("items").sort(null);
-
 		},
+		
 		comparator: function(a, b) {
 
 			var aDate = new Date(a);
@@ -90,7 +91,6 @@ sap.ui.define([
 				return 1;
 			}
 			return 0;
-
 		}
 
 	});
