@@ -1,12 +1,14 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller", 
 	"sap/ui/core/routing/History", 
-	"sap/ui/Device"
-], function(Controller, History, Device) {
+	"sap/ui/Device",
+	"sap/m/MessageToast",
+	"sap/ui/core/Fragment"
+], function(Controller, History, Device, MessageToast, Fragment) {
 	"use strict";
-
+	//var SortOrder = library.SortOrder;
 	return Controller.extend("qstMyEinkauf.controller.ListSettings", {
-
+        selectedItem: null,
 		onInit : function () {
 			this.getOwnerComponent().getRouter().getRoute("listSettings").attachPatternMatched(this._onRouteMatched, this);
 		},
@@ -19,7 +21,7 @@ sap.ui.define([
 		},
 		
 		
-		onNavBack : function () {
+		onNavBack: function () {
 			var sPreviousHash = History.getInstance().getPreviousHash();
 
 			//The history contains a previous entry
@@ -32,7 +34,101 @@ sap.ui.define([
 					.navTo("listDetails",
 						{orderId:0}, !Device.system.phone); //absoluter Pfad!
 			}
+		},
+		
+		onSelectionChange: function(oEvent){
+			var sRole = oEvent.getParameter("selectedItem").getProperty("key");
+			var oModel= this.getOwnerComponent().getModel("beispiel");
+			var sPath = oEvent.getSource().getBindingContext("beispiel").getPath();
+			oModel.setProperty(sPath+"/role", sRole);
+			//debugger; 
+		},
+		
+		onPressMinus: function(){
+			if (this.selectedItem !== null){
+				var sPath = this.selectedItem.getPath();
+				var sIndex = parseInt(sPath.substring(sPath.length-1, sPath.length));
+            	var oModel = this.getView().getModel("beispiel");
+            	oModel.getProperty(sPath.substring(0, sPath.length-1)).splice(sIndex, 1);
+				oModel.refresh();
+
+			}
+			this.selectedItem = null;
+
+		},
+		
+		openDialog: function(viewName){
+			var oView = this.getView();
+			// create dialog lazily
+			if (!this.byId(viewName)) {
+			// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "qstMyEinkauf.view." + viewName,
+					controller: this
+				}).then(function (oDialog) {
+				// connect dialog to the root view 
+				//of this component (models, lifecycle)
+    			oView.addDependent(oDialog);
+    			oDialog.open();
+			});
+			} else {
+    			this.byId(viewName).open();
+    		}
+		},
+		
+		openDialogAddSetting: function(){
+			this.openDialog("DialogAddSetting");
+		},
+		
+		closeDialogAddSetting: function(){
+			var sName = this.byId("input_name_dialog").getValue();
+			var sRight = this.byId("input_recht").getValue();
+			var oTable = this.getView().byId("table_settings");
+			var sPathPrefix = oTable.getBinding("rows").getContext().getPath();
+			var sPathSuffix = oTable.getBinding("rows").getPath();
+			var sPath = sPathPrefix + "/" + sPathSuffix;
+            var oModel = this.getView().getModel("beispiel");
+            oModel.getProperty(sPath).push({"userName": sName, "role": sRight});
+			oModel.refresh();
+			this.byId("DialogAddSetting").close();
+		},
+		
+		openDialogDeleteSetting: function(){
+			if(this.selectedItem !== null){
+				this.openDialog("DialogDeleteSetting");
+			}
+		},
+		
+		closeDialogDeleteSetting: function(oEvent){
+            //debugger;
+            var oButtonId = oEvent.getParameter("id").split("--")[1];
+            
+			if (this.selectedItem !== null && oButtonId === "button_ja"){
+				var sPath = this.selectedItem.getPath();
+				var sIndex = parseInt(sPath.substring(sPath.length-1, sPath.length));
+            	var oModel = this.getView().getModel("beispiel");
+            	oModel.getProperty(sPath.substring(0, sPath.length-1)).splice(sIndex, 1);
+				oModel.refresh();
+				this.selectedItem = null;
+			}
+
+			this.byId("DialogDeleteSetting").close();
+		},
+		
+		onRowSelectionChange: function(oEvent){
+			var oRowContext = oEvent.getParameter("rowContext");
+			if(oRowContext !== null){
+				this.selectedItem = oRowContext;
+				var sPath = this.selectedItem.getPath();
+				var oTable = this.getView().byId("table_settings");
+				oTable.bindElement(sPath);
+				MessageToast.show("Zeile ausgewählt!");
+			}
+			
 		}
+		
+		
 
 	});
 
