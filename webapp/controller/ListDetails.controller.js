@@ -1,27 +1,51 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
-	"sap/ui/core/Fragment"
-], function(Controller, History, Fragment) {
+	"sap/ui/core/Fragment",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(Controller, History, Fragment, Filter, FilterOperator) {
 	"use strict";
 	return Controller.extend("qstMyEinkauf.controller.ListDetails", {
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("listDetails").attachPatternMatched(this._onRouteMatched, this);
 		},
 		_onRouteMatched: function(oEvent) {
-			this._orderId = oEvent.getParameter("arguments").orderId; //orderID ist Name aus mnifest :orderID: und muss angepasst werden!
+			this._orderId = oEvent.getParameter("arguments").orderId;
 			this.getView().bindElement({
-				path: "/orders/" + this._orderId,
-				model: "beispiel"
-			}); //orderID anpassen + "/orders/" muss zu Modell passen! + Modell anpassen + Seite 240 Extras einbauen
-		},
-
-		/*onSelectionChange: function(oEvent) {
-			var sProductId = oEvent.getSource().getBindingContext().getProperty("productId");
-			this.getOwnerComponent().getRouter()
-				.navTo("productDetails",
-					{orderId:this._orderId, productId: sProductId});
-		},*/
+				path: "/ListsSet('" + this._orderId + "')", // Wir wollen hier einmal nochmal die entsprechende EL mit "Über"-Daten binden
+				model: "EinkaufBackend"
+			});
+			
+			// Hier werden dann die Einträge zu dieser EL abgeholt und an die Liste gebunden
+			var that=this;
+			var aFilter1 = []; 
+			aFilter1.push(new sap.ui.model.Filter("ListId", FilterOperator.EQ, this._orderId));
+			var oModelHier = this.getOwnerComponent().getModel("EinkaufBackend");
+			var oTable = that.getView().byId("table_details");
+			oTable.bindRows({
+				path: "EinkaufBackend>/ItemsSet",
+				filters:aFilter1
+			});	
+			
+			
+			
+			/*oModelHier.read("/ItemsSet", {
+				filters: aFilter1,
+				success: function(oData, oResponse){
+					console.log(oResponse);
+					var oTable = that.getView().byId("table_details");
+					//oTable.bindElement(oData.results);
+					oTable.bindRows({
+    					path: "EinkaufBackend>/ItemsSet",
+    					filters:[{path:'ListID', operator:'EQ', value1:'0004'}]
+					});
+				},
+				error: function(){
+					alert("Fehler beim Lesen der DB!");
+				}
+			});*/
+		}, //Seite 240 Extras einbauen
 
 		onToSettings: function() {
 			this.getOwnerComponent().getRouter().navTo("listSettings", {

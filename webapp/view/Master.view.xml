@@ -17,9 +17,9 @@
 			<l:HorizontalLayout>
 				<Label text="Filtern nach Ersteller"/>
 				<Text text=" " width="50px"/> <!-- Gleiches Thema wie oben -->
-				<ComboBox id="box_master_owner" maxWidth="40%" items="{beispiel>/orders}" selectionChange="onSelectName">
+				<ComboBox id="box_master_owner" maxWidth="40%" items="{EinkaufBackend>/ListsSet}" selectionChange="onSelectName">
 					<items>
-						<core:ListItem text="{beispiel>owner}" key="item_name" id="combo_name"/>
+						<core:ListItem text="{EinkaufBackend>CreatorName}" key="item_name" id="combo_name"/>
 					</items>
 				</ComboBox>
 			</l:HorizontalLayout>
@@ -29,9 +29,9 @@
 		<Text text=" " width="70px"/>
 		<Button icon="sap-icon://undo" press="onReset" width="40%"/>
 		<!-- Hier kommt die Liste -->
-		<List id="el" items="{beispiel>/orders}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete">
+		<List id="el" items="{EinkaufBackend>/ListsSet}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete"><!---->
 			<items>
-				<StandardListItem title="{beispiel>orderName}" description="{beispiel>owner}" info="{beispiel>changeDate}" type="Active"
+				<StandardListItem title="{EinkaufBackend>Title}" description="{EinkaufBackend>CreatorName}" info="{EinkaufBackend>ChangeDate}" type="Active"
 					press="onSelectionChange"/>
 			</items>
 		</List>

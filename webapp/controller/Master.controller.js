@@ -27,7 +27,8 @@ sap.ui.define([
 		
 		onSelectionChange: function(oEvent) {
 			MessageToast.show("Enter SelectionChange");
-			var sListId = oEvent.getSource().getSelectedItem().getBindingContext("beispiel").getProperty("orderId"); // "orderId" aus dem Modell!! Property und nicht der Pfad! Zufällig das Gleiche
+			var sListId = oEvent.getSource().getSelectedItem().getBindingContext("EinkaufBackend").getProperty("ListId"); // "orderId" aus dem Modell!! Property und nicht der Pfad! Zufällig das Gleiche
+			// var gPath = oEvent.getSource().getSelectedItem().getBindingContext("EinkaufBackend").getPath();
 			this.getOwnerComponent().getRouter()
 				.navTo("listDetails", {
 						orderId: sListId
@@ -36,10 +37,10 @@ sap.ui.define([
 		},
 
 		onSelectName: function(oEvent) {
-			var oItem = oEvent.getParameter("selectedItem");
-			var sPath = oItem.getBindingContext("beispiel").getPath();
-			var oList = this.getView().byId("el");
+			var sPath = oEvent.getParameter("selectedItem").getBindingContext("beispiel").getPath();
 			var sOwner = this.getView().getModel("beispiel").getProperty(sPath + "/owner");
+			
+			var oList = this.getView().byId("el");
 			oList.bindElement(sPath);
 
 			var oFilter = new Filter({

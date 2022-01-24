@@ -72,9 +72,10 @@
 			"EinkaufBackend": {
 				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
-					"defaultOperationMode": "Auto",
+					"defaultOperationMode": "Server",
 					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "Request"
+					"defaultCountMode": "Request",
+					"useBatch": true
 				},
 				"dataSource": "ZNKHD_EINKAUF_SRV",
 				"preload": true
