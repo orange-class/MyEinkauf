@@ -8,7 +8,11 @@ xmlns:html="http://www.w3.org/1999/xhtml">
 	<Input id="input_name_dialog" width="50%" />
 	<html:br/>
 	<Label text="Zugriffsrecht: " />
-	<Input id="input_recht" width="10%" />
+	<ComboBox id="box_dialog" selectionChange="onSelectionChangeAddSetting" value="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : 'Teilen' }" >
+		<core:Item text="Ansehen" key='A' id="item_a"/>
+		<core:Item text="Bearbeiten" key='B' id="item_b"/>
+		<core:Item text="Teilen" key='T' id="item_t"/>
+	</ComboBox>
 	
     <beginButton>
          <Button text="Ok" press="closeDialogAddSetting"/>

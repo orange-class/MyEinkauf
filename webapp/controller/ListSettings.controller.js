@@ -9,6 +9,7 @@ sap.ui.define([
 	//var SortOrder = library.SortOrder;
 	return Controller.extend("qstMyEinkauf.controller.ListSettings", {
         selectedItem: null,
+        sRight: null,
 		onInit : function () {
 			this.getOwnerComponent().getRouter().getRoute("listSettings").attachPatternMatched(this._onRouteMatched, this);
 		},
@@ -42,6 +43,10 @@ sap.ui.define([
 			var sPath = oEvent.getSource().getBindingContext("beispiel").getPath();
 			oModel.setProperty(sPath+"/role", sRole);
 			//debugger; 
+		},
+		
+		onSelectionChangeAddSetting: function(oEvent){
+			this.sRight = oEvent.getParameter("selectedItem").getProperty("key");
 		},
 		
 		onPressMinus: function(){
@@ -83,13 +88,13 @@ sap.ui.define([
 		
 		closeDialogAddSetting: function(){
 			var sName = this.byId("input_name_dialog").getValue();
-			var sRight = this.byId("input_recht").getValue();
+			//var sRight = this.byId("input_recht").getValue();
 			var oTable = this.getView().byId("table_settings");
 			var sPathPrefix = oTable.getBinding("rows").getContext().getPath();
 			var sPathSuffix = oTable.getBinding("rows").getPath();
 			var sPath = sPathPrefix + "/" + sPathSuffix;
             var oModel = this.getView().getModel("beispiel");
-            oModel.getProperty(sPath).push({"userName": sName, "role": sRight});
+            oModel.getProperty(sPath).push({"userName": sName, "role": this.sRight});
 			oModel.refresh();
 			this.byId("DialogAddSetting").close();
 		},
