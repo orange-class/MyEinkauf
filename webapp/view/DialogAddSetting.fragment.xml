@@ -1,0 +1,23 @@
+<core:FragmentDefinition 
+xmlns="sap.m"
+xmlns:core="sap.ui.core" 
+xmlns:html="http://www.w3.org/1999/xhtml">
+	
+<Dialog id="DialogAddSetting" title="Wünschmenge">
+	<Label text="Name: " />
+	<Input id="input_name_dialog" width="50%" />
+	<html:br/>
+	<Label text="Zugriffsrecht: " />
+	<ComboBox id="box_dialog" selectionChange="onSelectionChangeAddSetting" value="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : 'Teilen' }" >
+		<core:Item text="Ansehen" key='A' id="item_a"/>
+		<core:Item text="Bearbeiten" key='B' id="item_b"/>
+		<core:Item text="Teilen" key='T' id="item_t"/>
+	</ComboBox>
+	
+    <beginButton>
+         <Button text="Ok" press="closeDialogAddSetting"/>
+    </beginButton>
+
+</Dialog>
+
+</core:FragmentDefinition>
