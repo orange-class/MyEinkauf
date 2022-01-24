@@ -1,124 +1,97 @@
-<mvc:View 
-	xmlns:core="sap.ui.core" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns="sap.m" 
-	xmlns:t="sap.ui.table" 
-	xmlns:layout="sap.ui.layout" 
-	xmlns:html="http://www.w3.org/1999/xhtml" 
-	controllerName="qstMyEinkauf.controller.ListDetails">
-	<Page 
-		title="{beispiel>orderName} von {beispiel>owner}" 
-		titleAlignment="Start"
-		navButtonPress="onNavBack" 
-		showNavButton="{device>/system/phone}"
-		contentOnlyBusy="true"> <!-- titel an Modell anpassen -->
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:layout="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qstMyEinkauf.controller.ListDetails">
+	
+	<Page title="{EinkaufBackend>ListsSet/Title} von {EinkaufBackend>ListsSet/CreatorName}" titleAlignment="Start" navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}" contentOnlyBusy="true" id="page01">
+		<!-- titel an Modell anpassen -->
 		<content>
 			<layout:HorizontalLayout>
-				<Label text="Sortieren auf"/>
-				<Text text="	" width="10px"/>
-				<ComboBox  id="box_master">
-					
-			    	<items>
-	                	<!--<core:ListItem text="Alphabetisch" key="item_zeit" id="combo_alphabet"/>-->
-			        	<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
-			        	<core:ListItem text="Änderungsdatum" key="item_zeit" id="combo_zeit"/>
+				<Label text="Sortieren nach"/>
+				<ComboBox id="box_master">
+					<items>
+						<!--<core:ListItem text="Alphabetisch" key="item_zeit" id="combo_alphabet"/>-->
+						<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
+						<core:ListItem text="Änderungsdatum" key="item_zeit" id="combo_zeit"/>
 					</items>
-	
 				</ComboBox>
-			
-			
-			<!-- UNTERTITEL: Eigentümer der Liste -->
-			<!-- rechts daneben: zuletzt bearbeitet von wem und wann? -->
-			
-			<!-- Settings-Button -->
-			<Button id="buttonToSettings" text="Einstellungen" icon="sap-icon://action-settings" press="onToSettings"/>
+				<!-- UNTERTITEL: Eigentümer der Liste -->
+				<!-- rechts daneben: zuletzt bearbeitet von wem und wann? -->
+				<!-- Settings-Button -->
+				<Button id="buttonToSettings" text="Einstellungen" icon="sap-icon://action-settings" press="onToSettings"/>
 			</layout:HorizontalLayout>
 			<!-- SORTIEREN: alphabetisch, Ersteller, Zeit via Dropdown (ComboBox) -->
 			<!-- Abgeschlossenes Ausblenden - Button -->
 			<!-- Neuen Eintrag hinzufügen - Button -->
 			<!-- Markierte Einträge löschen - Button -->
-                <t:Table rows="{beispiel>products}" id="table_details"> 
-	                   <t:columns>
-	                   	
-						<t:Column>
-							<t:label>
-								<Label text="Product" id="label_productName"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>productName}" id="text_productName"/>
-							</t:template>
-						</t:Column> 
-						
-						<t:Column>
-							<t:label>
-								<Label text="Besorgte Menge" id="label_quantityProvided"/>
-							</t:label>
-							<t:template>
-								<Input value="{beispiel>quantityProvided}" id="text_quantityProvided"/>
-							</t:template>
-						</t:Column> 
-						<t:Column>
-							<t:label>
-								<Label text="Angeforderte Menge" id="label_quantityRequested"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>quantityRequested}" id="text_quantityRequested"/>
-							</t:template>
-						</t:Column> 
-						
-						
-						
-						<t:Column>
-							<t:label>
-								<Label text="Einheit" id="label_unit"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>unit}" id="text_unit"/>
-							</t:template>
-						</t:Column> 
-						
-						<t:Column>
-							<t:label>
-								<Label text="Ersteller" id="label_owner"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>owner}" id="text_owner"/>
-							</t:template>
-						</t:Column> 
-					
-						
-						<t:Column>
-							<t:label>
-								<Label text="Änderungsdatum" id="label_datum"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>changeDate}" id="text_datum"/>
-							</t:template>
-						</t:Column> 
-						
-						<t:Column>
-							<t:label>
-								<Label text="Bearbeiter" id="label_bearbeiter"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>changedBy}" id="text_bearbeiter"/>
-							</t:template>
-						</t:Column>
-						<t:Column>
-							<t:label>
-								<Label text="Abschließer" id="label_abschliesser"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>finishedBy}" id="text_abschliesser"/>
-							</t:template>
-						</t:Column> 
-						
-						</t:columns>
-		
-					</t:Table>
-	
-
-
+			<!--<t:Table rows="{path:'EinkaufBackend>ItemsSet', filters:[{path:'ListID', operator:'EQ', value1:'0004'}]}" id="table_details">-->
+			<t:Table id="table_details" > <!-- rows="{EinkaufBackend>/ItemsSet}"  -->
+				<t:columns>
+					<t:Column>
+						<t:label>
+							<Label text="Product" id="label_productName"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>ProdName}" id="text_productName"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Besorgte Menge" id="label_quantityProvided"/>
+						</t:label>
+						<t:template>
+							<Input value="{EinkaufBackend>ItemIquant}" id="text_quantityProvided"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Angeforderte Menge" id="label_quantityRequested"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>ItemSquant}" id="text_quantityRequested"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Einheit" id="label_unit"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>ProdUnit}" id="text_unit"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Ersteller" id="label_owner"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>CreatorName}" id="text_owner"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Änderungsdatum" id="label_datum"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>ChangeDate}" id="text_datum"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Bearbeiter" id="label_bearbeiter"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>ChangerName}" id="text_bearbeiter"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:label>
+							<Label text="Abschließer" id="label_abschliesser"/>
+						</t:label>
+						<t:template>
+							<Text text="{EinkaufBackend>FinisherName}" id="text_abschliesser"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
 		</content>
 	</Page>
 </mvc:View>

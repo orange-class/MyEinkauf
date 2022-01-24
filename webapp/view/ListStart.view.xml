@@ -1,12 +1,8 @@
-<mvc:View 
-	xmlns:core="sap.ui.core" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns="sap.m" 
-	controllerName="qstMyEinkauf.controller.ListStart"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="qstMyEinkauf.controller.ListStart"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page title="Bitte wähle eine Einkaufsliste" navButtonPress="onNavBack" showNavButton="{device>/system/phone}">
 		<content>
-			<Image src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Blauer_himmel.jpg" width="100%" />
+			<Image src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Blauer_himmel.jpg" width="100%"/>
 		</content>
 	</Page>
 </mvc:View>
