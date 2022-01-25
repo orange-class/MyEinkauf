@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogAddItem" title="Neues Produkt">
+		<Label text="Name: "/>
+		<Input id="input_dialog_name" width="50%"/>
+		<html:br/>
+		<Label text="Produktname: "/>
+		<Input id="input_dialog_produktname" width="50%"/>
+		<html:br/>
+		<Label text="Menge: "/>
+		<Input id="input_dialog_menge" width="50%"/>
+		<html:br/>
+		<Label text="Einheit: "/>
+		<Input id="input_dialog_einheit" width="50%"/>
+		<html:br/>
+		<beginButton>
+			<Button text="Bestätigen" press="closeDialogAddItem"/>
+		</beginButton>
+		<endButton>
+			<Button text="Abbrechen" press="cancelDialogAddItem"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

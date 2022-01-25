@@ -69,10 +69,8 @@ sap.ui.define([
 				var oModel = this.getView().getModel("beispiel");
 				oModel.getProperty(sPath.substring(0, sPath.length - 1)).splice(sIndex, 1);
 				oModel.refresh();
-
 			}
 			this.selectedItem = null;
-
 		},
 
 		openDialog: function(viewName) {
@@ -133,8 +131,11 @@ sap.ui.define([
 				oModel.refresh();
 				this.selectedItem = null;
 			}
-
 			this.byId("DialogDeleteSetting").close();
+		},
+		
+		cancelDialogAddSetting: function(){
+			this.byId("DialogAddSetting").close();	
 		},
 
 		onRowSelectionChange: function(oEvent) {

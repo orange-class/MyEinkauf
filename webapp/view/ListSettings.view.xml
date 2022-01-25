@@ -26,7 +26,7 @@
 				<f:FormContainer ariaLabelledBy="Title3">
 					<f:toolbar> 
 						<Toolbar> 
-							<Title id="Title3" text="Berechtigungen"/> 
+							<Title id="Title3" text="Freigaben"/> 
 							<ToolbarSpacer/> 
 							<Button tooltip="Benutzer hinzufügen" icon="sap-icon://add-employee" id="button_add" press="openDialogAddSetting"/>
 							<Button tooltip="Benutzer entfernen" icon="sap-icon://delete" id="button_minus" press="openDialogDeleteSetting"/>
@@ -36,7 +36,7 @@
 						<f:FormElement >
 							<t:Table id="table_settings" selectionMode="Single" rowSelectionChange="onRowSelectionChange">
 								<t:columns>
-									<t:Column id="col_name" sortProperty="userName">
+									<t:Column id="col_name" sortProperty="UserId">
 										<t:label>
 											<Label text="Name" id="label_name"/>
 										</t:label>
@@ -44,8 +44,7 @@
 											<Text text="{EinkaufBackend>UserId}" wrapping="false" id="text_name"/>
 										</t:template>
 									</t:Column>
-									<!--value="{beispiel>role}" items="{beispiel>sharedWith}"-->
-									<t:Column id="col_role" sortProperty="role">
+									<t:Column id="col_role" sortProperty="UserRights">
 										<t:label>
 											<Label text="Rolle" id="label_rolle"/>
 										</t:label>
@@ -56,7 +55,6 @@
 												<core:Item text="Bearbeiten" key='B' id="item_bearbeiten"/>
 												<core:Item text="Teilen" key='T' id="item_teilen"/>
 											</ComboBox>
-											<!--<Text text="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : ${beispiel>role} === 'T' ? 'Teilen' : '' }"/>-->
 										</t:template>
 									</t:Column>
 								</t:columns>

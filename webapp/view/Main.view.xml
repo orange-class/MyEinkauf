@@ -1,4 +1,5 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mu="sap.suite.ui.microchart">
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:mu="sap.suite.ui.microchart">
 	<IconTabBar id="IconTabBar01" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" tabDensityMode="Compact">
 		<items>
 			<IconTabFilter icon="sap-icon://activity-items" text="Einkaufslisten" key="lists">
@@ -6,10 +7,20 @@
 			</IconTabFilter>
 			<!-- -->
 			<IconTabFilter icon="sap-icon://product" text="Waren" key="wares">
-				<Title text="Übersicht aller möglichen Waren" />
-				<l:VerticalLayout id="containerLayout" width="100%">
-					<Text text="Neben der Übersicht könnte sich später hier noch die Möglichkeit finden, diese anzulegen."/>
-				</l:VerticalLayout>
+				<content>
+					<Page title="Übersicht aller möglichen Waren">
+						<l:VerticalLayout id="containerLayout">
+							<Text text="Neben der Übersicht könnte sich später hier noch die Möglichkeit finden, diese anzulegen."/>
+						</l:VerticalLayout>
+						<List id="list_item" items="{EinkaufBackend>/ProdListSet}">
+							<!-- delete="handleDelete" selectionChange="onSelectionChange" -->
+							<items>
+								<StandardListItem title="{EinkaufBackend>ProdName}" info="{EinkaufBackend>ProdUnit}" type="Active"/>
+								<!-- press="onSelectionChange" -->
+							</items>
+						</List>
+					</Page>
+				</content>
 			</IconTabFilter>
 			<!-- -->
 			<IconTabFilter icon="sap-icon://business-objects-experience" text="Statistik-Center" key="statistics">

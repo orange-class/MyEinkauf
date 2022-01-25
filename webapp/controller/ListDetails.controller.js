@@ -3,10 +3,14 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/core/Fragment",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(Controller, History, Fragment, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox",
+	"sap/m/MessageToast"
+], function(Controller, History, Fragment, Filter, FilterOperator, MessageBox, MessageToast) {
 	"use strict";
 	return Controller.extend("qstMyEinkauf.controller.ListDetails", {
+		_selectedItem: null,
+
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("listDetails").attachPatternMatched(this._onRouteMatched, this);
 		},
@@ -70,14 +74,21 @@ sap.ui.define([
 			}
 		},
 
-		onOpenDialog: function() {
+		//////////////////////////////////////////////////////////////////////////////////////
+		// ALLES FOLGENDE MUSS AN oDATA ANGEPASST WERDEN
+		//////////////////////////////////////////////////////////////////////////////////////
+		openDialogAddItem: function() {
+			this.openDialog("DialogAddItem");
+		},
+
+		openDialog: function(viewName) {
 			var oView = this.getView();
 			// create dialog lazily
-			if (!this.byId("openDialog")) {
+			if (!this.byId(viewName)) {
 				// load asynchronous XML fragment
 				Fragment.load({
 					id: oView.getId(),
-					name: "qstMyEinkauf.view.Dialog",
+					name: "qstMyEinkauf.view." + viewName,
 					controller: this
 				}).then(function(oDialog) {
 					// connect dialog to the root view 
@@ -86,15 +97,76 @@ sap.ui.define([
 					oDialog.open();
 				});
 			} else {
-				this.byId("openDialog").open();
+				this.byId(viewName).open();
 			}
-
-			//oView.byId("").setText("");
 		},
 
-		closeDialog: function() {
-			this.byId("openDialog").close();
-		}
+		closeDialogAddItem: function() {
+			var sName = this.byId("input_dialog_name").getValue();
+			var sProduct = this.byId("input_dialog_produktname").getValue();
+			var sAmount = this.byId("input_dialog_menge").getValue();
+			var sUnit = this.byId("input_dialog_einheit").getValue();
+			var oTable = this.getView().byId("table_details");
+			var sPathPrefix = oTable.getBinding("rows").getContext().getPath();
+			var sPathSuffix = oTable.getBinding("rows").getPath();
+			var sPath = sPathPrefix + "/" + sPathSuffix;
+			var oModel = this.getView().getModel("beispiel");
+			var sToday = new Date().toISOString().split("T")[0].split("-").reverse().join(".");
+			oModel.getProperty(sPath).push({
+				"productId": oModel.getData().length,
+				"owner": sName,
+				"productName": sProduct,
+				"quantityProvided": 0,
+				"quantityRequested": sAmount,
+				"unit": sUnit,
+				"changeDate": "",
+				"changedBy": "",
+				creationDate: sToday,
+				finishedBy: ""
+			});
+			oModel.refresh();
+			this.byId("DialogAddItem").close();
+		},
 
+		openDialogDeleteItem: function() {
+			this.openDialog("DialogDeleteItem");
+		},
+
+		cancelDialogAddItem: function() {
+			this.byId("DialogAddItem").close();
+		},
+
+		onSubmitQuantity: function(oEvent) {
+			if (this.selectedItem === null) {
+				MessageBox.confirm("Bitte einen Eintrag auswählen, um die Menge zu bearbeiten!", {
+					title: "Warning!"
+				});
+			} else {
+				var sPath = this.selectedItem.getPath();
+				//var sIndex = parseInt(sPath.substring(sPath.length-1, sPath.length));
+				var oModel = this.getView().byId("table_details").getModel("beispiel");
+				//var itemArray = oModel.getProperty(sPath.substring(0, sPath.length-1));
+				var oQuanProv = parseInt(oEvent.getParameter("value"));
+				var oQuanReq = oModel.getProperty(sPath + "/quantityRequested");
+				//debugger;
+				if (oQuanProv > oQuanReq) {
+					MessageBox.confirm("Die organisierte Menge sollte kleiner oder gleich der angeforderten Menge sein!", {
+						title: "Warning!"
+					});
+				}
+				MessageToast.show("Die Menge wurde geändert!");
+			}
+		},
+
+		onRowSelectionChange: function(oEvent) {
+			var oRowContext = oEvent.getParameter("rowContext");
+			if (oRowContext !== null) {
+				this.selectedItem = oRowContext;
+				var sPath = this.selectedItem.getPath();
+				var oTable = this.getView().byId("table_details");
+				oTable.bindElement(sPath);
+				MessageToast.show("Zeile ausgewählt!");
+			}
+		}
 	});
 });

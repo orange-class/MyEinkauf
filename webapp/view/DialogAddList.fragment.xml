@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogAddList" title="Einkaufsliste">
+		<Label text="Titel: "/>
+		<Input id="input_dialog_titel" width="50%"/>
+		<html:br/>
+		<Label text="Ersteller: "/>
+		<Input id="input_dialog_beschreibung" width="50%"/>
+		<html:br/>
+		<beginButton>
+			<Button text="Bestätigen" press="closeDialogAddList"/>
+		</beginButton>
+		<endButton>
+			<Button text="Abbrechen" press="cancelDialogAddList"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

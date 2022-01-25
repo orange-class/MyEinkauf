@@ -1,20 +1,11 @@
-<core:FragmentDefinition 
-xmlns="sap.m"
-xmlns:core="sap.ui.core"
-xmlns:l="sap.ui.layout"
-xmlns:html="http://www.w3.org/1999/xhtml">
-<Dialog id="DialogDeleteSetting" title="Wünschmenge">
-	
-	<Text text="Möchten Sie wirklich den ausgewählten Eintrag löschen?"/>
-    <beginButton>
-    	 <Button text="Ja" press="closeDialogDeleteSetting" id="button_ja"/>
-    </beginButton>
-    <endButton>
-         <Button text="Nein" press="closeDialogDeleteSetting" id="button_nein"/>
-    </endButton>
-    
-
-
-</Dialog>
-
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="DialogDeleteSetting" title="Wunschmenge">
+		<Text text="Den ausgewählten Eintrag wirklich löschen?"/>
+		<beginButton>
+			<Button text="Ja" press="closeDialogDeleteSetting" id="button_ja"/>
+		</beginButton>
+		<endButton>
+			<Button text="Nein" press="closeDialogDeleteSetting" id="button_nein"/>
+		</endButton>
+	</Dialog>
 </core:FragmentDefinition>
