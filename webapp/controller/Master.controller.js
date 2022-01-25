@@ -4,8 +4,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/ui/model/Sorter"
-], function(Controller, Device, MessageToast, Filter, FilterOperator, Sorter) {
+	"sap/ui/model/Sorter",
+	"sap/ui/core/Fragment"
+], function(Controller, Device, MessageToast, Filter, FilterOperator, Sorter, Fragment) {
 	"use strict";
 
 	return Controller.extend("qstMyEinkauf.controller.Master", {
@@ -73,6 +74,46 @@ sap.ui.define([
 			oList.getBinding("items").filter(null);
 			oList.getBinding("items").sort(null);
 		},
+		
+		openDialogAddList: function(){
+        	this.openDialog("DialogAddList");
+        },
+        
+        openDialog: function(viewName){
+			var oView = this.getView();
+			// create dialog lazily
+			if (!this.byId(viewName)) {
+			// load asynchronous XML fragment
+				Fragment.load({
+					id: oView.getId(),
+					name: "qstMyEinkauf.view." + viewName,
+					controller: this
+				}).then(function (oDialog) {
+				// connect dialog to the root view 
+				//of this component (models, lifecycle)
+    			oView.addDependent(oDialog);
+    			oDialog.open();
+			});
+			} else {
+    			this.byId(viewName).open();
+    		}
+		},
+        
+        closeDialogAddList: function(){
+        	var sTitle = this.byId("input_dialog_titel").getValue();
+			var sName = this.byId("input_dialog_beschreibung").getValue();
+			var oList = this.getView().byId("el");
+			var sPath = oList.getBinding("items").getPath();
+			var oModel = this.getView().getModel("beispiel");
+			var sToday = new Date().toISOString().split("T")[0].split("-").reverse().join(".");
+			oModel.getProperty(sPath).push({"orderId": oModel.getData().orders.length, "orderName": sTitle, "owner": sName, "products":[], "changeDate": sToday, "sharedWith": [], "changedBy": ""});
+            oModel.refresh();
+			this.byId("DialogAddList").close();		
+        },
+        
+        cancelDialogAddList: function(){
+        	this.byId("DialogAddList").close();	
+        },
 		
 		comparator: function(a, b) {
 

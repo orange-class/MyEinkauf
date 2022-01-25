@@ -1,53 +1,70 @@
-<mvc:View 
-	xmlns="sap.m"
-	xmlns:layout="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:t="sap.ui.table"
-	xmlns:core="sap.ui.core"
-	controllerName="qstMyEinkauf.controller.ListSettings"
-	xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page
-		title="{beispiel>orderName} von {beispiel>owner}"
-		showNavButton="true"
-		navButtonPress="onNavBack"
-		contentOnlyBusy="true"
-		titleAlignment="Start">
-		<content>
-			<Button tooltip="Benutzer hinzufügen" icon="sap-icon://add" id="button_add" press="openDialogAddSetting"/> 
-			<Button tooltip="Benutzer entfernen" icon="sap-icon://less" id="button_minus" press="openDialogDeleteSetting"/>
-			<t:Table rows="{beispiel>sharedWith}" id="table_settings" selectionMode="Single" rowSelectionChange="onRowSelectionChange">
-				
-	                <t:columns>
-	                	<t:Column
-							id="col_name"
-							sortProperty="userName">
-							<t:label>
-								<Label text="Name" id="label_name"/>
-							</t:label>
-							<t:template>
-								<Text text="{beispiel>userName}" wrapping="false" id="text_name"/>
-							</t:template>
-						</t:Column>
-						<!--value="{beispiel>role}" items="{beispiel>sharedWith}"-->
-						<t:Column 
-							id="col_role"
-							sortProperty="role">
-							<t:label>
-								<Label text="Rolle" id="label_rolle"/>
-							</t:label>
-							<t:template>
-								<ComboBox id="box_settings" selectionChange="onSelectionChange" value="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : 'Teilen' }" >
-									<core:Item text="Ansehen" key='A' id="item_ansehen"/>
-									<core:Item text="Bearbeiten" key='B' id="item_bearbeiten"/>
-									<core:Item text="Teilen" key='T' id="item_teilen"/>
-								</ComboBox>
-								<!--<Text text="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : ${beispiel>role} === 'T' ? 'Teilen' : '' }"/>-->
-							</t:template>
-						</t:Column>
-					</t:columns>
-			</t:Table>
-			
-		</content>
+<mvc:View xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table"
+	xmlns:core="sap.ui.core" controllerName="qstMyEinkauf.controller.ListSettings" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page contentOnlyBusy="true" showHeader="false" id="PageSettings">
+		<f:Form id="FormToolbar" editable="true" ariaLabelledBy="FormSettings">
+			<f:toolbar>
+				<Toolbar id="TB1">
+					<Button icon="sap-icon://nav-back" press="onNavBack"/>
+					<Title text="Einstellungen"/>
+				</Toolbar>
+			</f:toolbar>
+			<f:layout> <!-- hier lässt sich einstellen, wie alle Elemente angeordnet sind -->
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer ariaLabelledBy="Title2">
+					<f:toolbar>
+						<Toolbar>
+							<Title id="ELName" text="{EinkaufBackend>Title}"/>
+							<ToolbarSpacer/>
+							<Button tooltip="Titel ändern" icon="sap-icon://edit" id="bChangeTitel" /> <!-- press="XXXX" -->
+							<Button tooltip="Liste löschen" icon="sap-icon://delete" id="bDeleteList" /> <!-- press="XXXX" -->
+						</Toolbar>
+					</f:toolbar>
+				</f:FormContainer>
+				<f:FormContainer ariaLabelledBy="Title3">
+					<f:toolbar> 
+						<Toolbar> 
+							<Title id="Title3" text="Berechtigungen"/> 
+							<ToolbarSpacer/> 
+							<Button tooltip="Benutzer hinzufügen" icon="sap-icon://add-employee" id="button_add" press="openDialogAddSetting"/>
+							<Button tooltip="Benutzer entfernen" icon="sap-icon://delete" id="button_minus" press="openDialogDeleteSetting"/>
+						</Toolbar>
+					</f:toolbar>
+					<f:formElements>
+						<f:FormElement >
+							<t:Table id="table_settings" selectionMode="Single" rowSelectionChange="onRowSelectionChange">
+								<t:columns>
+									<t:Column id="col_name" sortProperty="userName">
+										<t:label>
+											<Label text="Name" id="label_name"/>
+										</t:label>
+										<t:template>
+											<Text text="{EinkaufBackend>UserId}" wrapping="false" id="text_name"/>
+										</t:template>
+									</t:Column>
+									<!--value="{beispiel>role}" items="{beispiel>sharedWith}"-->
+									<t:Column id="col_role" sortProperty="role">
+										<t:label>
+											<Label text="Rolle" id="label_rolle"/>
+										</t:label>
+										<t:template>
+											<ComboBox id="box_settings" selectionChange="onSelectionChange"
+												value="{= ${EinkaufBackend>UserRights} === 'A' ? 'Ansehen' : ${EinkaufBackend>UserRights} === 'B' ? 'Bearbeiten' : 'Teilen' }">
+												<core:Item text="Ansehen" key='A' id="item_ansehen"/>
+												<core:Item text="Bearbeiten" key='B' id="item_bearbeiten"/>
+												<core:Item text="Teilen" key='T' id="item_teilen"/>
+											</ComboBox>
+											<!--<Text text="{= ${beispiel>role} === 'A' ? 'Ansehen' : ${beispiel>role} === 'B' ? 'Bearbeiten' : ${beispiel>role} === 'T' ? 'Teilen' : '' }"/>-->
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
 	</Page>
 </mvc:View>

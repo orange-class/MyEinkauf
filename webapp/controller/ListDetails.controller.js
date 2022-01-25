@@ -12,25 +12,30 @@ sap.ui.define([
 		},
 		_onRouteMatched: function(oEvent) {
 			this._orderId = oEvent.getParameter("arguments").orderId;
+			var oPath = "/ListsSet('" + this._orderId + "')";
 			this.getView().bindElement({
-				path: "/ListsSet('" + this._orderId + "')", // Wir wollen hier einmal nochmal die entsprechende EL mit "Über"-Daten binden
+				path: oPath, // Wir wollen hier einmal nochmal die entsprechende EL mit "Über"-Daten binden
 				model: "EinkaufBackend"
 			});
-			
+
 			// Hier werden dann die Einträge zu dieser EL abgeholt und an die Liste gebunden
-			var that=this;
-			var aFilter1 = []; 
+			var that = this;
+			var aFilter1 = [];
 			aFilter1.push(new sap.ui.model.Filter("ListId", FilterOperator.EQ, this._orderId));
-			var oModelHier = this.getOwnerComponent().getModel("EinkaufBackend");
 			var oTable = that.getView().byId("table_details");
 			oTable.bindRows({
 				path: "EinkaufBackend>/ItemsSet",
-				filters:aFilter1
-			});	
-			
-			
-			
-			/*oModelHier.read("/ItemsSet", {
+				filters: aFilter1
+			});
+
+			// Doch anders gelöst!
+			// Hier werden die statischen Elemente befüllt wie der Titel der Seite
+			// var oPage = this.getView().byId("page01");
+			// oPage.setTitle({EinkaufBackend>Title}" von "{EinkaufBackend>ListsSet/CreatorName});
+
+		}, //Seite 240 Extras einbauen
+
+		/*oModelHier.read("/ItemsSet", {
 				filters: aFilter1,
 				success: function(oData, oResponse){
 					console.log(oResponse);
@@ -45,7 +50,6 @@ sap.ui.define([
 					alert("Fehler beim Lesen der DB!");
 				}
 			});*/
-		}, //Seite 240 Extras einbauen
 
 		onToSettings: function() {
 			this.getOwnerComponent().getRouter().navTo("listSettings", {
@@ -62,7 +66,7 @@ sap.ui.define([
 			} else {
 				// There is no history!
 				// Naviate to master page
-				this.getOwnerComponent().getRouter().navTo("master", {}, true);
+				this.getOwnerComponent().getRouter().navTo("listStart", {}, true);
 			}
 		},
 

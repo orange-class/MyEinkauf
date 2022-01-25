@@ -1,35 +1,30 @@
 <mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
 	xmlns="sap.m" controllerName="qstMyEinkauf.controller.Master">
 	<Page title="Meine Einkaufslisten">
-		<l:VerticalLayout>
-			<l:HorizontalLayout>
-				<Label text="Sortieren nach"/>
-				<Text text=" " width="100px"/> <!-- Nicht so hübsch, es über ein unsichtbares Textfeld zu lösen. 
-				Besser wäre, mit dem responsive Grid-Layout zu arbeiten. Da ist nur die Frage, wie man das hier umsetzt-->
-				<ComboBox id="box_master_sort" maxWidth="40%" selectionChange="onSelectSort">
-					<items>
-						<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
-						<core:ListItem text="Letzte Änderung" key="item_zeit" id="combo_zeit"/>
-					</items>
-				</ComboBox>
-			</l:HorizontalLayout>
-			<!---->
-			<l:HorizontalLayout>
-				<Label text="Filtern nach Ersteller"/>
-				<Text text=" " width="50px"/> <!-- Gleiches Thema wie oben -->
-				<ComboBox id="box_master_owner" maxWidth="40%" items="{EinkaufBackend>/ListsSet}" selectionChange="onSelectName">
-					<items>
-						<core:ListItem text="{EinkaufBackend>CreatorName}" key="item_name" id="combo_name"/>
-					</items>
-				</ComboBox>
-			</l:HorizontalLayout>
-		</l:VerticalLayout>
-		<!-- Hier drunter kommen die Buttons -->
-		<Button icon="sap-icon://add" width="20%"/>
-		<Text text=" " width="70px"/>
-		<Button icon="sap-icon://undo" press="onReset" width="40%"/>
+		<headerContent>
+			<Button tooltip="Neue Liste anlegen" icon="sap-icon://add-activity-2" press="openDialogAddList"/>
+			<Button tooltip="Sortierung Filterung löschen" icon="sap-icon://undo" press="onReset"/>
+		</headerContent>
+		<l:HorizontalLayout class="sapUiContentPadding" allowWrapping="true">
+			<Label text="Sortieren nach" width="150px"/>
+			<ComboBox id="box_master_sort" maxWidth="40%" selectionChange="onSelectSort">
+				<items>
+					<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
+					<core:ListItem text="Letzte Änderung" key="item_zeit" id="combo_zeit"/>
+				</items>
+			</ComboBox>
+		</l:HorizontalLayout>
+		<l:HorizontalLayout class="sapUiContentPadding" allowWrapping="true">
+			<Label text="Filtern nach Ersteller"  width="150px"/>
+			<ComboBox id="box_master_owner" maxWidth="40%" items="{EinkaufBackend>/ListsSet}" selectionChange="onSelectName">
+				<items>
+					<core:ListItem text="{EinkaufBackend>CreatorName}" key="item_name" id="combo_name"/>
+				</items>
+			</ComboBox>
+		</l:HorizontalLayout>
 		<!-- Hier kommt die Liste -->
-		<List id="el" items="{EinkaufBackend>/ListsSet}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete"><!---->
+		<List id="el" items="{EinkaufBackend>/ListsSet}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete">
+			<!---->
 			<items>
 				<StandardListItem title="{EinkaufBackend>Title}" description="{EinkaufBackend>CreatorName}" info="{EinkaufBackend>ChangeDate}" type="Active"
 					press="onSelectionChange"/>
