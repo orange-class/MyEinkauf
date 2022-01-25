@@ -137,12 +137,12 @@ sap.ui.define([
 		},
 
 		onSubmitQuantity: function(oEvent) {
-			if (this.selectedItem === null) {
+			if (this._selectedItem === null) {
 				MessageBox.confirm("Bitte einen Eintrag auswählen, um die Menge zu bearbeiten!", {
 					title: "Warning!"
 				});
 			} else {
-				var sPath = this.selectedItem.getPath();
+				var sPath = this._selectedItem.getPath();
 				//var sIndex = parseInt(sPath.substring(sPath.length-1, sPath.length));
 				var oModel = this.getView().byId("table_details").getModel("beispiel");
 				//var itemArray = oModel.getProperty(sPath.substring(0, sPath.length-1));
@@ -161,8 +161,8 @@ sap.ui.define([
 		onRowSelectionChange: function(oEvent) {
 			var oRowContext = oEvent.getParameter("rowContext");
 			if (oRowContext !== null) {
-				this.selectedItem = oRowContext;
-				var sPath = this.selectedItem.getPath();
+				this._selectedItem = oRowContext;
+				var sPath = this._selectedItem.getPath();
 				var oTable = this.getView().byId("table_details");
 				oTable.bindElement(sPath);
 				MessageToast.show("Zeile ausgewählt!");

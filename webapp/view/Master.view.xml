@@ -5,15 +5,17 @@
 			<Button tooltip="Neue Liste anlegen" icon="sap-icon://add-activity-2" press="openDialogAddList"/>
 			<Button tooltip="Sortierung Filterung löschen" icon="sap-icon://undo" press="onReset"/>
 		</headerContent>
+		<!-- Sortieren -->
 		<l:HorizontalLayout class="sapUiContentPadding" allowWrapping="true">
 			<Label text="Sortieren nach" width="150px"/>
 			<ComboBox id="box_master_sort" maxWidth="40%" selectionChange="onSelectSort">
 				<items>
 					<core:ListItem text="Ersteller" key="item_ersteller" id="combo_ersteller"/>
-					<core:ListItem text="Letzte Änderung" key="item_zeit" id="combo_zeit"/>
+					<core:ListItem text="Zuletzt geändert" key="item_zeit" id="combo_zeit"/>
 				</items>
 			</ComboBox>
 		</l:HorizontalLayout>
+		<!-- Filtern -->
 		<l:HorizontalLayout class="sapUiContentPadding" allowWrapping="true">
 			<Label text="Filtern nach Ersteller"  width="150px"/>
 			<ComboBox id="box_master_owner" maxWidth="40%" items="{EinkaufBackend>/ListsSet}" selectionChange="onSelectName">
@@ -22,9 +24,8 @@
 				</items>
 			</ComboBox>
 		</l:HorizontalLayout>
-		<!-- Hier kommt die Liste -->
-		<List id="el" items="{EinkaufBackend>/ListsSet}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete">
-			<!---->
+		<!-- Liste -->
+		<List id="el" items="{path: 'EinkaufBackend>/ListsSet'}" mode="SingleSelectMaster" selectionChange="onSelectionChange" delete="handleDelete"> <!-- , sorter: {path: 'ListsSet/Title'}-->
 			<items>
 				<StandardListItem title="{EinkaufBackend>Title}" description="{EinkaufBackend>CreatorName}" info="{EinkaufBackend>ChangeDate}" type="Active"
 					press="onSelectionChange"/>
