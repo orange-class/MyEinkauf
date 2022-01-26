@@ -138,6 +138,7 @@ sap.ui.define([
 			var oBindContext = oEvent.getSource().getBindingContext("EinkaufBackend");
 			var sPath = oBindContext.getPath();
 			var oModel = this.getView().getModel("EinkaufBackend");
+			var that = this;
 			MessageBox.confirm("Wirklich die gesamte Liste löschen?", {
 				// title: "Bestätigung",
 				initialFocus: sap.m.MessageBox.Action.CANCEL,
@@ -151,6 +152,7 @@ sap.ui.define([
 							animationTimingFunction: "ease-in-out",
 							animationDuration: 1000
 						});
+						that.getOwnerComponent().getRouter().navTo("listStart", {}, true);
 					} else {
 						MessageToast.show("Der Löschvorgang wurde abgebrochen.", {
 							animationTimingFunction: "ease-in-out",
@@ -159,7 +161,7 @@ sap.ui.define([
 					}
 				}
 			});
-			oModel.refresh("EinkaufBackend");
+			//oModel.refresh("EinkaufBackend");
 		}
 	});
 });

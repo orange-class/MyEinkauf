@@ -70,16 +70,22 @@ sap.ui.define([
 		},
 
 		onItemDelete: function(oEvent) {
-			var oTable = sap.ui.getCore().byId("table_details");
-			var selectedContexts = oTable.getSelectedContexts(true);
-			var oModel = oTable.getModel();
-			var dataNode = oModel.getData()["DATA_NODE"];
-			$.each(selectedContexts.reverse(), function(i, item) {
-				var i = parseInt(item.getPath().substr(item.getPath().lastIndexOf("/") + 1));
-				dataNode.splice(i, 1);
-			});
-			oModel.refresh(true);
-			// DATA_NODE is the name of attribute bound to items of table
+			var oTable = this.getView().byId("table_details");
+			var oModel = this.getView().getModel("EinkaufBackend");
+			var oItems = oTable.getSelectedIndices();
+			if (oItems.length > 1) {
+				MessageToast.show("Bitte nur ein Item auswählen");
+			} else {
+				var i,
+					path;
+				for (i = oItems.length - 1; i >= 0; --i) {
+					var id = oItems[i];
+					path = oTable.getContextByIndex(id).sPath;
+					oModel.remove(path, {
+						method: "DELETE"
+					});
+				}
+			}
 		},
 		//////////////////////////////////////////////////////////////////////////////////////
 		// ALLES FOLGENDE MUSS AN oDATA ANGEPASST WERDEN
