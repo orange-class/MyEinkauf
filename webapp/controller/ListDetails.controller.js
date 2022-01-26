@@ -10,7 +10,6 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("qstMyEinkauf.controller.ListDetails", {
 		_selectedItem: null,
-
 		onInit: function() {
 			this.getOwnerComponent().getRouter().getRoute("listDetails").attachPatternMatched(this._onRouteMatched, this);
 		},
@@ -18,10 +17,10 @@ sap.ui.define([
 			this._orderId = oEvent.getParameter("arguments").orderId;
 			var oPath = "/ListsSet('" + this._orderId + "')";
 			this.getView().bindElement({
-				path: oPath, // Wir wollen hier einmal nochmal die entsprechende EL mit "Über"-Daten binden
+				path: oPath,
+				// Wir wollen hier einmal nochmal die entsprechende EL mit "Über"-Daten binden
 				model: "EinkaufBackend"
 			});
-
 			// Hier werden dann die Einträge zu dieser EL abgeholt und an die Liste gebunden
 			var that = this;
 			var aFilter1 = [];
@@ -30,15 +29,13 @@ sap.ui.define([
 			oTable.bindRows({
 				path: "EinkaufBackend>/ItemsSet",
 				filters: aFilter1
-			});
-
-			// Doch anders gelöst!
+			}); // Doch anders gelöst!
 			// Hier werden die statischen Elemente befüllt wie der Titel der Seite
 			// var oPage = this.getView().byId("page01");
 			// oPage.setTitle({EinkaufBackend>Title}" von "{EinkaufBackend>ListsSet/CreatorName});
-
-		}, //Seite 240 Extras einbauen
-
+		},
+		//Seite 240 Extras einbauen
+		//
 		/*oModelHier.read("/ItemsSet", {
 				filters: aFilter1,
 				success: function(oData, oResponse){
@@ -54,13 +51,11 @@ sap.ui.define([
 					alert("Fehler beim Lesen der DB!");
 				}
 			});*/
-
 		onToSettings: function() {
 			this.getOwnerComponent().getRouter().navTo("listSettings", {
 				orderId: this._orderId
 			}); //orderID anpassen
 		},
-
 		// Für Routing zurück im Browser
 		onNavBack: function() {
 			var sPreviousHash = History.getInstance().getPreviousHash();
@@ -74,13 +69,24 @@ sap.ui.define([
 			}
 		},
 
+		onItemDelete: function(oEvent) {
+			var oTable = sap.ui.getCore().byId("table_details");
+			var selectedContexts = oTable.getSelectedContexts(true);
+			var oModel = oTable.getModel();
+			var dataNode = oModel.getData()["DATA_NODE"];
+			$.each(selectedContexts.reverse(), function(i, item) {
+				var i = parseInt(item.getPath().substr(item.getPath().lastIndexOf("/") + 1));
+				dataNode.splice(i, 1);
+			});
+			oModel.refresh(true);
+			// DATA_NODE is the name of attribute bound to items of table
+		},
 		//////////////////////////////////////////////////////////////////////////////////////
 		// ALLES FOLGENDE MUSS AN oDATA ANGEPASST WERDEN
 		//////////////////////////////////////////////////////////////////////////////////////
 		openDialogAddItem: function() {
 			this.openDialog("DialogAddItem");
 		},
-
 		openDialog: function(viewName) {
 			var oView = this.getView();
 			// create dialog lazily
@@ -100,7 +106,6 @@ sap.ui.define([
 				this.byId(viewName).open();
 			}
 		},
-
 		closeDialogAddItem: function() {
 			var sName = this.byId("input_dialog_name").getValue();
 			var sProduct = this.byId("input_dialog_produktname").getValue();
@@ -127,18 +132,15 @@ sap.ui.define([
 			oModel.refresh();
 			this.byId("DialogAddItem").close();
 		},
-
 		openDialogDeleteItem: function() {
 			this.openDialog("DialogDeleteItem");
 		},
-
 		cancelDialogAddItem: function() {
 			this.byId("DialogAddItem").close();
 		},
-
 		onSubmitQuantity: function(oEvent) {
 			if (this._selectedItem === null) {
-				MessageBox.confirm("Bitte einen Eintrag auswählen, um die Menge zu bearbeiten!", {
+				MessageBox.confirm("Bitte einen Eintrag ausw\xE4hlen, um die Menge zu bearbeiten!", {
 					title: "Warning!"
 				});
 			} else {
@@ -154,10 +156,9 @@ sap.ui.define([
 						title: "Warning!"
 					});
 				}
-				MessageToast.show("Die Menge wurde geändert!");
+				MessageToast.show("Die Menge wurde ge\xE4ndert!");
 			}
 		},
-
 		onRowSelectionChange: function(oEvent) {
 			var oRowContext = oEvent.getParameter("rowContext");
 			if (oRowContext !== null) {
@@ -165,7 +166,7 @@ sap.ui.define([
 				var sPath = this._selectedItem.getPath();
 				var oTable = this.getView().byId("table_details");
 				oTable.bindElement(sPath);
-				MessageToast.show("Zeile ausgewählt!");
+				MessageToast.show("Zeile ausgew\xE4hlt!");
 			}
 		}
 	});

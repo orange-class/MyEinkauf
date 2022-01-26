@@ -1,5 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:layout="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qstMyEinkauf.controller.ListDetails">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qstMyEinkauf.controller.ListDetails">
 	<Page contentOnlyBusy="true" showHeader="false" id="page01">
 		<!-- navButtonPress="onNavBack" showNavButton="{device>/system/phone}"  -->
 		<f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
@@ -13,8 +12,7 @@
 				</Toolbar>
 			</f:toolbar>
 			<f:layout> <!-- hier lässt sich einstellen, wie alle Elemente angeordnet sind -->
-				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
-					emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
 			</f:layout>
 			<f:formContainers>
 				<f:FormContainer ariaLabelledBy="Title2">
@@ -22,7 +20,7 @@
 						<Toolbar>
 							<Title id="Title2" text="von {EinkaufBackend>CreatorName}"/>
 							<ToolbarSpacer/>
-							<Text text="Zuletzt bearbeitet: {EinkaufBackend>ChangerName} {EinkaufBackend>ChangeDate}" />
+							<Text text="Zuletzt bearbeitet: {EinkaufBackend>ChangerName} {EinkaufBackend&gt;ChangeDate}"/>
 						</Toolbar>
 					</f:toolbar>
 					<!--<f:formElements>
@@ -45,13 +43,13 @@
 							<Title id="Title3" text="Einträge"/> 
 							<ToolbarSpacer/> 
 							<Button id="addProduct" tooltip="Eintrag hinzufügen" icon="sap-icon://add-product" press="openDialogAddItem"/> <!-- Funktionalität! --> 
-							<Button id="removeProduct" tooltip="Eintrag löschen" icon="sap-icon://delete"/> <!-- Funktionalität! -->
-							<Button id="hideProduct" tooltip="Erledigtes ausblenden" icon="sap-icon://hide" /> <!-- Funktionalität! text="Abgeschlossenes ausblenden" -->
+							<Button id="removeProduct" tooltip="Eintrag löschen" icon="sap-icon://delete" press="onItemDelete"/> <!-- Funktionalität! -->
+							<Button id="hideProduct" tooltip="Erledigtes ausblenden" icon="sap-icon://hide"/> <!-- Funktionalität! text="Abgeschlossenes ausblenden" -->
 						</Toolbar>
 					</f:toolbar>
 					<f:formElements>
-						<f:FormElement >
-							<t:Table id="table_details">
+						<f:FormElement>
+							<t:Table id="table_details" alternateRowColors="true" enableCellFilter="true" showColumnVisibilityMenu="true" >
 								<t:columns>
 									<t:Column sortProperty="ProdName">
 										<t:label>
@@ -63,7 +61,7 @@
 									</t:Column>
 									<t:Column sortProperty="ItemIquant">
 										<t:label>
-											<Label text="Besorgte Menge" id="label_quantityProvided"/>
+											<Label text="IST" id="label_quantityProvided"/>
 										</t:label>
 										<t:template>
 											<Input value="{EinkaufBackend>ItemIquant}" id="text_quantityProvided"/>
@@ -71,7 +69,7 @@
 									</t:Column>
 									<t:Column sortProperty="ItemSquant">
 										<t:label>
-											<Label text="Angeforderte Menge" id="label_quantityRequested"/>
+											<Label text="SOLL" id="label_quantityRequested"/>
 										</t:label>
 										<t:template>
 											<Text text="{EinkaufBackend>ItemSquant}" id="text_quantityRequested"/>

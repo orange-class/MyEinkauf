@@ -5,8 +5,9 @@ sap.ui.define([
 	"sap/m/MessageToast",
 	"sap/ui/core/Fragment",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function(Controller, History, Device, MessageToast, Fragment, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageBox"
+], function(Controller, History, Device, MessageToast, Fragment, Filter, FilterOperator, MessageBox) {
 	"use strict";
 	//var SortOrder = library.SortOrder;
 	return Controller.extend("qstMyEinkauf.controller.ListSettings", {
@@ -22,7 +23,6 @@ sap.ui.define([
 				path: oPath,
 				model: "EinkaufBackend"
 			});
-			
 			// Hier werden dann die Berechtigungs-Einträge zu dieser EL abgeholt und an die Liste gebunden
 			var that = this;
 			var aFilter1 = [];
@@ -33,35 +33,28 @@ sap.ui.define([
 				filters: aFilter1
 			});
 		},
-
 		onNavBack: function() {
 			var sPreviousHash = History.getInstance().getPreviousHash();
-
 			//The history contains a previous entry
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
 				// There is no history!
 				// replace the current hash with order id 0 (will not add an history entry)
-				this.getOwnerComponent().getRouter()
-					.navTo("listDetails", {
-						orderId: 0
-					}, !Device.system.phone); //absoluter Pfad!
+				this.getOwnerComponent().getRouter().navTo("listDetails", {
+					orderId: 0
+				}, !Device.system.phone); //absoluter Pfad!
 			}
 		},
-
 		onSelectionChange: function(oEvent) {
 			var sRole = oEvent.getParameter("selectedItem").getProperty("key");
 			var oModel = this.getOwnerComponent().getModel("beispiel");
 			var sPath = oEvent.getSource().getBindingContext("beispiel").getPath();
-			oModel.setProperty(sPath + "/role", sRole);
-			//debugger; 
+			oModel.setProperty(sPath + "/role", sRole); //debugger; 
 		},
-
 		onSelectionChangeAddSetting: function(oEvent) {
 			this.sRight = oEvent.getParameter("selectedItem").getProperty("key");
 		},
-
 		onPressMinus: function() {
 			if (this.selectedItem !== null) {
 				var sPath = this.selectedItem.getPath();
@@ -72,7 +65,6 @@ sap.ui.define([
 			}
 			this.selectedItem = null;
 		},
-
 		openDialog: function(viewName) {
 			var oView = this.getView();
 			// create dialog lazily
@@ -92,11 +84,9 @@ sap.ui.define([
 				this.byId(viewName).open();
 			}
 		},
-
 		openDialogAddSetting: function() {
 			this.openDialog("DialogAddSetting");
 		},
-
 		closeDialogAddSetting: function() {
 			var sName = this.byId("input_name_dialog").getValue();
 			//var sRight = this.byId("input_recht").getValue();
@@ -112,17 +102,14 @@ sap.ui.define([
 			oModel.refresh();
 			this.byId("DialogAddSetting").close();
 		},
-
 		openDialogDeleteSetting: function() {
 			if (this.selectedItem !== null) {
 				this.openDialog("DialogDeleteSetting");
 			}
 		},
-
 		closeDialogDeleteSetting: function(oEvent) {
 			//debugger;
 			var oButtonId = oEvent.getParameter("id").split("--")[1];
-
 			if (this.selectedItem !== null && oButtonId === "button_ja") {
 				var sPath = this.selectedItem.getPath();
 				var sIndex = parseInt(sPath.substring(sPath.length - 1, sPath.length));
@@ -133,11 +120,9 @@ sap.ui.define([
 			}
 			this.byId("DialogDeleteSetting").close();
 		},
-		
-		cancelDialogAddSetting: function(){
-			this.byId("DialogAddSetting").close();	
+		cancelDialogAddSetting: function() {
+			this.byId("DialogAddSetting").close();
 		},
-
 		onRowSelectionChange: function(oEvent) {
 			var oRowContext = oEvent.getParameter("rowContext");
 			if (oRowContext !== null) {
@@ -145,11 +130,36 @@ sap.ui.define([
 				var sPath = this.selectedItem.getPath();
 				var oTable = this.getView().byId("table_settings");
 				oTable.bindElement(sPath);
-				MessageToast.show("Zeile ausgewählt!");
+				MessageToast.show("Zeile ausgew\xE4hlt!");
 			}
+		},
+		
+		onDeleteList: function(oEvent) {
+			var oBindContext = oEvent.getSource().getBindingContext("EinkaufBackend");
+			var sPath = oBindContext.getPath();
+			var oModel = this.getView().getModel("EinkaufBackend");
+			MessageBox.confirm("Wirklich die gesamte Liste löschen?", {
+				// title: "Bestätigung",
+				initialFocus: sap.m.MessageBox.Action.CANCEL,
+				onClose: function(sButton) {
 
+					if (sButton === MessageBox.Action.OK) {
+						oModel.remove(sPath, {
+							method: "DELETE"
+						});
+						MessageToast.show("Liste erfolgreich gelöscht", {
+							animationTimingFunction: "ease-in-out",
+							animationDuration: 1000
+						});
+					} else {
+						MessageToast.show("Der Löschvorgang wurde abgebrochen.", {
+							animationTimingFunction: "ease-in-out",
+							animationDuration: 1000
+						});
+					}
+				}
+			});
+			oModel.refresh("EinkaufBackend");
 		}
-
 	});
-
 });
