@@ -73,6 +73,9 @@ sap.ui.define([
 			var oTable = this.getView().byId("table_details");
 			var oModel = this.getView().getModel("EinkaufBackend");
 			var oItems = oTable.getSelectedIndices();
+			
+			// Nur ausführen, falls max. ein Item ausgewählt wurde (ansonsten Fehler...) 
+			// könnte man später noch umbauen auf multiples löschen, aber zu kompliziert für jetzt
 			if (oItems.length > 1) {
 				MessageToast.show("Bitte nur ein Item auswählen");
 			} else {
