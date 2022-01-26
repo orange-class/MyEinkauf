@@ -42,8 +42,8 @@
 						<Toolbar> 
 							<Title id="Title3" text="Einträge"/> 
 							<ToolbarSpacer/> 
-							<Button id="addProduct" tooltip="Eintrag hinzufügen" icon="sap-icon://add-product" press="openDialogAddItem"/> <!-- Funktionalität! --> 
-							<Button id="removeProduct" tooltip="Eintrag löschen" icon="sap-icon://delete" press="onItemDelete"/> <!-- Funktionalität! -->
+							<Button id="addProduct" tooltip="Eintrag hinzufügen" icon="sap-icon://cart-3" press="openDialogAddItem"/> <!-- Funktionalität! --> 
+							<Button id="removeProduct" tooltip="Eintrag löschen" icon="sap-icon://cart-2" press="onItemDelete"/> <!-- Funktionalität! -->
 							<Button id="hideProduct" tooltip="Erledigtes ausblenden" icon="sap-icon://hide"/> <!-- Funktionalität! text="Abgeschlossenes ausblenden" -->
 						</Toolbar>
 					</f:toolbar>

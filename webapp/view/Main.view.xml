@@ -1,5 +1,5 @@
 <mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout"
-	xmlns:mu="sap.suite.ui.microchart">
+	xmlns:mu="sap.suite.ui.microchart" controllerName="qstMyEinkauf.controller.Main">
 	<IconTabBar id="IconTabBar01" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" tabDensityMode="Compact">
 		<items>
 			<IconTabFilter icon="sap-icon://activity-items" text="Einkaufslisten" key="lists">
@@ -9,6 +9,9 @@
 			<IconTabFilter icon="sap-icon://product" text="Waren" key="wares">
 				<content>
 					<Page title="Übersicht aller möglichen Waren">
+						<headerContent>
+							<Button tooltip="Neue Waren anlegen" icon="sap-icon://add-product" press="openDialogAddProduct"/>
+						</headerContent>
 						<l:VerticalLayout id="containerLayout">
 							<Text text="Neben der Übersicht könnte sich später hier noch die Möglichkeit finden, diese anzulegen."/>
 						</l:VerticalLayout>
