@@ -13,7 +13,6 @@
 							<Button tooltip="Neue Waren anlegen" icon="sap-icon://add-product" press="openDialogAddProduct"/>
 						</headerContent>
 						<l:VerticalLayout id="containerLayout">
-							<Text text="Neben der Übersicht könnte sich später hier noch die Möglichkeit finden, diese anzulegen."/>
 						</l:VerticalLayout>
 						<List id="list_item" items="{EinkaufBackend>/ProdListSet}">
 							<!-- delete="handleDelete" selectionChange="onSelectionChange" -->
